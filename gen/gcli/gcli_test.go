@@ -8,7 +8,7 @@ import (
 	"github.com/octago/sflags"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/urfave/cli"
+	"github.com/urfave/cli/v2"
 )
 
 type cfg1 struct {
