@@ -10,15 +10,17 @@ import (
 func GenerateTo(src []*sflags.Flag, dst *[]cli.Flag) {
 	for _, srcFlag := range src {
 		name := srcFlag.Name
+		var aliases []string
 		if srcFlag.Short != "" {
-			name += ", " + srcFlag.Short
+			aliases = append(aliases, srcFlag.Short)
 		}
 		*dst = append(*dst, &cli.GenericFlag{
-			Name:   name,
-			EnvVar: srcFlag.EnvName,
-			Hidden: srcFlag.Hidden,
-			Usage:  srcFlag.Usage,
-			Value:  srcFlag.Value,
+			Name:    name,
+			EnvVars: []string{srcFlag.EnvName},
+			Aliases: aliases,
+			Hidden:  srcFlag.Hidden,
+			Usage:   srcFlag.Usage,
+			Value:   srcFlag.Value,
 		})
 	}
 }
