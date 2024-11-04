@@ -2,7 +2,7 @@ package gcli
 
 import (
 	"github.com/octago/sflags"
-	"github.com/urfave/cli"
+	"github.com/urfave/cli/v2"
 )
 
 // GenerateTo takes a list of sflag.Flag,
