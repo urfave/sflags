@@ -98,14 +98,14 @@ func validateFunc(val string, options tagOptionsMap) error {
 						var err error
 						if !negate {
 							if customMsgExists {
-								err = fmt.Errorf(customErrorMessage)
+								err = fmt.Errorf("%s", customErrorMessage)
 							} else {
 								err = fmt.Errorf("`%s` does not validate as %s", val, validator)
 							}
 
 						} else {
 							if customMsgExists {
-								err = fmt.Errorf(customErrorMessage)
+								err = fmt.Errorf("%s", customErrorMessage)
 							} else {
 								err = fmt.Errorf("`%s` does validate as %s", val, validator)
 							}
@@ -123,13 +123,13 @@ func validateFunc(val string, options tagOptionsMap) error {
 
 				if !negate {
 					if customMsgExists {
-						err = fmt.Errorf(customErrorMessage)
+						err = fmt.Errorf("%s", customErrorMessage)
 					} else {
 						err = fmt.Errorf("`%s` does not validate as %s", val, validator)
 					}
 				} else {
 					if customMsgExists {
-						err = fmt.Errorf(customErrorMessage)
+						err = fmt.Errorf("%s", customErrorMessage)
 					} else {
 						err = fmt.Errorf("`%s` does validate as %s", val, validator)
 					}

@@ -15,6 +15,9 @@ import (
 	"text/template"
 	"unicode"
 	"unicode/utf8"
+
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 )
 
 const (
@@ -523,11 +526,13 @@ func main() {
 	err = json.NewDecoder(r).Decode(&values)
 	fatalIfError(err)
 
+	caser := cases.Title(language.English, cases.NoLower)
+
 	valueName := func(v *value) string {
 		if v.Name != "" {
-			return strings.Title(v.Name)
+			return caser.String(v.Name)
 		}
-		return strings.Title(v.Type)
+		return caser.String(v.Type)
 	}
 	imports := []string{}
 	for _, value := range values {
@@ -536,7 +541,7 @@ func main() {
 
 	baseT := template.New("genvalues").Funcs(template.FuncMap{
 		"Lower": strings.ToLower,
-		"Title": strings.Title,
+		"Title": caser.String,
 		"Format": func(v *value) string {
 			if v.Format != "" {
 				return v.Format
