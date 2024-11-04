@@ -30,7 +30,7 @@ lint:
 
 check:
 	@echo "$(OK_COLOR)Run golangci-lint$(NO_COLOR)"
-	@golangci-lint run --no-config --exclude-use-default=true --max-same-issues=10 --disable=gosimple --disable=golint --enable=megacheck --enable=interfacer  --enable=goconst --enable=misspell --enable=unparam --enable=goimports --disable=errcheck --disable=ineffassign  --disable=gocyclo --disable=gas
+	@golangci-lint run --no-config --exclude-use-default=true --max-same-issues=10 --disable=gosimple --enable=staticcheck --enable=unused --enable=goconst --enable=misspell --enable=unparam --enable=goimports --disable=errcheck --disable=ineffassign  --disable=gocyclo --disable=gosec
 
 vet:
 	@echo "$(OK_COLOR)Run vet$(NO_COLOR)"
