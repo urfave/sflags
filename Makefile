@@ -42,7 +42,7 @@ race:
 
 fmt:
 	@echo "$(OK_COLOR)Formatting$(NO_COLOR)"
-	@echo $(PKGSDIRS) | xargs -I '{p}' -n1 goimports -w {p}
+	@echo $(PKGSDIRS) | xargs goimports -w
 
 info:
 	depscheck -totalonly -tests .
