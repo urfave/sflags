@@ -30,85 +30,85 @@ var MapAllowedKinds = []reflect.Kind{
 }
 
 func parseGenerated(value interface{}) Value {
-	switch value.(type) {
+	switch v := value.(type) {
 	case *string:
-		return newStringValue(value.(*string))
+		return newStringValue(v)
 	case *bool:
-		return newBoolValue(value.(*bool))
+		return newBoolValue(v)
 	case *uint:
-		return newUintValue(value.(*uint))
+		return newUintValue(v)
 	case *uint8:
-		return newUint8Value(value.(*uint8))
+		return newUint8Value(v)
 	case *uint16:
-		return newUint16Value(value.(*uint16))
+		return newUint16Value(v)
 	case *uint32:
-		return newUint32Value(value.(*uint32))
+		return newUint32Value(v)
 	case *uint64:
-		return newUint64Value(value.(*uint64))
+		return newUint64Value(v)
 	case *int:
-		return newIntValue(value.(*int))
+		return newIntValue(v)
 	case *int8:
-		return newInt8Value(value.(*int8))
+		return newInt8Value(v)
 	case *int16:
-		return newInt16Value(value.(*int16))
+		return newInt16Value(v)
 	case *int32:
-		return newInt32Value(value.(*int32))
+		return newInt32Value(v)
 	case *int64:
-		return newInt64Value(value.(*int64))
+		return newInt64Value(v)
 	case *float64:
-		return newFloat64Value(value.(*float64))
+		return newFloat64Value(v)
 	case *float32:
-		return newFloat32Value(value.(*float32))
+		return newFloat32Value(v)
 	case *time.Duration:
-		return newDurationValue(value.(*time.Duration))
+		return newDurationValue(v)
 	case *net.IP:
-		return newIPValue(value.(*net.IP))
+		return newIPValue(v)
 	case *HexBytes:
-		return newHexBytesValue(value.(*HexBytes))
+		return newHexBytesValue(v)
 	case *net.TCPAddr:
-		return newTCPAddrValue(value.(*net.TCPAddr))
+		return newTCPAddrValue(v)
 	case *net.IPNet:
-		return newIPNetValue(value.(*net.IPNet))
+		return newIPNetValue(v)
 	case *[]string:
-		return newStringSliceValue(value.(*[]string))
+		return newStringSliceValue(v)
 	case *[]bool:
-		return newBoolSliceValue(value.(*[]bool))
+		return newBoolSliceValue(v)
 	case *[]uint:
-		return newUintSliceValue(value.(*[]uint))
+		return newUintSliceValue(v)
 	case *[]uint8:
-		return newUint8SliceValue(value.(*[]uint8))
+		return newUint8SliceValue(v)
 	case *[]uint16:
-		return newUint16SliceValue(value.(*[]uint16))
+		return newUint16SliceValue(v)
 	case *[]uint32:
-		return newUint32SliceValue(value.(*[]uint32))
+		return newUint32SliceValue(v)
 	case *[]uint64:
-		return newUint64SliceValue(value.(*[]uint64))
+		return newUint64SliceValue(v)
 	case *[]int:
-		return newIntSliceValue(value.(*[]int))
+		return newIntSliceValue(v)
 	case *[]int8:
-		return newInt8SliceValue(value.(*[]int8))
+		return newInt8SliceValue(v)
 	case *[]int16:
-		return newInt16SliceValue(value.(*[]int16))
+		return newInt16SliceValue(v)
 	case *[]int32:
-		return newInt32SliceValue(value.(*[]int32))
+		return newInt32SliceValue(v)
 	case *[]int64:
-		return newInt64SliceValue(value.(*[]int64))
+		return newInt64SliceValue(v)
 	case *[]float64:
-		return newFloat64SliceValue(value.(*[]float64))
+		return newFloat64SliceValue(v)
 	case *[]float32:
-		return newFloat32SliceValue(value.(*[]float32))
+		return newFloat32SliceValue(v)
 	case *[]time.Duration:
-		return newDurationSliceValue(value.(*[]time.Duration))
+		return newDurationSliceValue(v)
 	case *[]net.IP:
-		return newIPSliceValue(value.(*[]net.IP))
+		return newIPSliceValue(v)
 	case *[]HexBytes:
-		return newHexBytesSliceValue(value.(*[]HexBytes))
+		return newHexBytesSliceValue(v)
 	case *[]*regexp.Regexp:
-		return newRegexpSliceValue(value.(*[]*regexp.Regexp))
+		return newRegexpSliceValue(v)
 	case *[]net.TCPAddr:
-		return newTCPAddrSliceValue(value.(*[]net.TCPAddr))
+		return newTCPAddrSliceValue(v)
 	case *[]net.IPNet:
-		return newIPNetSliceValue(value.(*[]net.IPNet))
+		return newIPNetSliceValue(v)
 	default:
 		return nil
 	}
