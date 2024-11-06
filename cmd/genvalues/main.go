@@ -65,11 +65,11 @@ func parseGeneratedPtrs(value interface{}) Value {
 }
 
 func parseGeneratedMap(value interface{}) Value {
-	switch value.(type) {
+	switch v := value.(type) {
 	{{range .Values}}{{ if not .NoMap }}\nn
 	{{ $value := . }}{{range $mapKeyTypes}}\nn
 	case *map[{{.}}]{{$value.Type}}:
-		return new{{MapValueName $value . | Title}}(value.(*map[{{.}}]{{$value.Type}}))
+		return new{{MapValueName $value . | Title}}(v)
 	{{end}}{{end}}{{end}}\nn
 	default:
 		return nil

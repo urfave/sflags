@@ -115,434 +115,434 @@ func parseGenerated(value interface{}) Value {
 }
 
 func parseGeneratedPtrs(value interface{}) Value {
-	switch value.(type) {
+	switch v := value.(type) {
 	case **regexp.Regexp:
-		return newRegexpValue(value.(**regexp.Regexp))
+		return newRegexpValue(v)
 	default:
 		return nil
 	}
 }
 
 func parseGeneratedMap(value interface{}) Value {
-	switch value.(type) {
+	switch v := value.(type) {
 	case *map[string]string:
-		return newStringStringMapValue(value.(*map[string]string))
+		return newStringStringMapValue(v)
 	case *map[int]string:
-		return newIntStringMapValue(value.(*map[int]string))
+		return newIntStringMapValue(v)
 	case *map[int8]string:
-		return newInt8StringMapValue(value.(*map[int8]string))
+		return newInt8StringMapValue(v)
 	case *map[int16]string:
-		return newInt16StringMapValue(value.(*map[int16]string))
+		return newInt16StringMapValue(v)
 	case *map[int32]string:
-		return newInt32StringMapValue(value.(*map[int32]string))
+		return newInt32StringMapValue(v)
 	case *map[int64]string:
-		return newInt64StringMapValue(value.(*map[int64]string))
+		return newInt64StringMapValue(v)
 	case *map[uint]string:
-		return newUintStringMapValue(value.(*map[uint]string))
+		return newUintStringMapValue(v)
 	case *map[uint8]string:
-		return newUint8StringMapValue(value.(*map[uint8]string))
+		return newUint8StringMapValue(v)
 	case *map[uint16]string:
-		return newUint16StringMapValue(value.(*map[uint16]string))
+		return newUint16StringMapValue(v)
 	case *map[uint32]string:
-		return newUint32StringMapValue(value.(*map[uint32]string))
+		return newUint32StringMapValue(v)
 	case *map[uint64]string:
-		return newUint64StringMapValue(value.(*map[uint64]string))
+		return newUint64StringMapValue(v)
 	case *map[string]bool:
-		return newStringBoolMapValue(value.(*map[string]bool))
+		return newStringBoolMapValue(v)
 	case *map[int]bool:
-		return newIntBoolMapValue(value.(*map[int]bool))
+		return newIntBoolMapValue(v)
 	case *map[int8]bool:
-		return newInt8BoolMapValue(value.(*map[int8]bool))
+		return newInt8BoolMapValue(v)
 	case *map[int16]bool:
-		return newInt16BoolMapValue(value.(*map[int16]bool))
+		return newInt16BoolMapValue(v)
 	case *map[int32]bool:
-		return newInt32BoolMapValue(value.(*map[int32]bool))
+		return newInt32BoolMapValue(v)
 	case *map[int64]bool:
-		return newInt64BoolMapValue(value.(*map[int64]bool))
+		return newInt64BoolMapValue(v)
 	case *map[uint]bool:
-		return newUintBoolMapValue(value.(*map[uint]bool))
+		return newUintBoolMapValue(v)
 	case *map[uint8]bool:
-		return newUint8BoolMapValue(value.(*map[uint8]bool))
+		return newUint8BoolMapValue(v)
 	case *map[uint16]bool:
-		return newUint16BoolMapValue(value.(*map[uint16]bool))
+		return newUint16BoolMapValue(v)
 	case *map[uint32]bool:
-		return newUint32BoolMapValue(value.(*map[uint32]bool))
+		return newUint32BoolMapValue(v)
 	case *map[uint64]bool:
-		return newUint64BoolMapValue(value.(*map[uint64]bool))
+		return newUint64BoolMapValue(v)
 	case *map[string]uint:
-		return newStringUintMapValue(value.(*map[string]uint))
+		return newStringUintMapValue(v)
 	case *map[int]uint:
-		return newIntUintMapValue(value.(*map[int]uint))
+		return newIntUintMapValue(v)
 	case *map[int8]uint:
-		return newInt8UintMapValue(value.(*map[int8]uint))
+		return newInt8UintMapValue(v)
 	case *map[int16]uint:
-		return newInt16UintMapValue(value.(*map[int16]uint))
+		return newInt16UintMapValue(v)
 	case *map[int32]uint:
-		return newInt32UintMapValue(value.(*map[int32]uint))
+		return newInt32UintMapValue(v)
 	case *map[int64]uint:
-		return newInt64UintMapValue(value.(*map[int64]uint))
+		return newInt64UintMapValue(v)
 	case *map[uint]uint:
-		return newUintUintMapValue(value.(*map[uint]uint))
+		return newUintUintMapValue(v)
 	case *map[uint8]uint:
-		return newUint8UintMapValue(value.(*map[uint8]uint))
+		return newUint8UintMapValue(v)
 	case *map[uint16]uint:
-		return newUint16UintMapValue(value.(*map[uint16]uint))
+		return newUint16UintMapValue(v)
 	case *map[uint32]uint:
-		return newUint32UintMapValue(value.(*map[uint32]uint))
+		return newUint32UintMapValue(v)
 	case *map[uint64]uint:
-		return newUint64UintMapValue(value.(*map[uint64]uint))
+		return newUint64UintMapValue(v)
 	case *map[string]uint8:
-		return newStringUint8MapValue(value.(*map[string]uint8))
+		return newStringUint8MapValue(v)
 	case *map[int]uint8:
-		return newIntUint8MapValue(value.(*map[int]uint8))
+		return newIntUint8MapValue(v)
 	case *map[int8]uint8:
-		return newInt8Uint8MapValue(value.(*map[int8]uint8))
+		return newInt8Uint8MapValue(v)
 	case *map[int16]uint8:
-		return newInt16Uint8MapValue(value.(*map[int16]uint8))
+		return newInt16Uint8MapValue(v)
 	case *map[int32]uint8:
-		return newInt32Uint8MapValue(value.(*map[int32]uint8))
+		return newInt32Uint8MapValue(v)
 	case *map[int64]uint8:
-		return newInt64Uint8MapValue(value.(*map[int64]uint8))
+		return newInt64Uint8MapValue(v)
 	case *map[uint]uint8:
-		return newUintUint8MapValue(value.(*map[uint]uint8))
+		return newUintUint8MapValue(v)
 	case *map[uint8]uint8:
-		return newUint8Uint8MapValue(value.(*map[uint8]uint8))
+		return newUint8Uint8MapValue(v)
 	case *map[uint16]uint8:
-		return newUint16Uint8MapValue(value.(*map[uint16]uint8))
+		return newUint16Uint8MapValue(v)
 	case *map[uint32]uint8:
-		return newUint32Uint8MapValue(value.(*map[uint32]uint8))
+		return newUint32Uint8MapValue(v)
 	case *map[uint64]uint8:
-		return newUint64Uint8MapValue(value.(*map[uint64]uint8))
+		return newUint64Uint8MapValue(v)
 	case *map[string]uint16:
-		return newStringUint16MapValue(value.(*map[string]uint16))
+		return newStringUint16MapValue(v)
 	case *map[int]uint16:
-		return newIntUint16MapValue(value.(*map[int]uint16))
+		return newIntUint16MapValue(v)
 	case *map[int8]uint16:
-		return newInt8Uint16MapValue(value.(*map[int8]uint16))
+		return newInt8Uint16MapValue(v)
 	case *map[int16]uint16:
-		return newInt16Uint16MapValue(value.(*map[int16]uint16))
+		return newInt16Uint16MapValue(v)
 	case *map[int32]uint16:
-		return newInt32Uint16MapValue(value.(*map[int32]uint16))
+		return newInt32Uint16MapValue(v)
 	case *map[int64]uint16:
-		return newInt64Uint16MapValue(value.(*map[int64]uint16))
+		return newInt64Uint16MapValue(v)
 	case *map[uint]uint16:
-		return newUintUint16MapValue(value.(*map[uint]uint16))
+		return newUintUint16MapValue(v)
 	case *map[uint8]uint16:
-		return newUint8Uint16MapValue(value.(*map[uint8]uint16))
+		return newUint8Uint16MapValue(v)
 	case *map[uint16]uint16:
-		return newUint16Uint16MapValue(value.(*map[uint16]uint16))
+		return newUint16Uint16MapValue(v)
 	case *map[uint32]uint16:
-		return newUint32Uint16MapValue(value.(*map[uint32]uint16))
+		return newUint32Uint16MapValue(v)
 	case *map[uint64]uint16:
-		return newUint64Uint16MapValue(value.(*map[uint64]uint16))
+		return newUint64Uint16MapValue(v)
 	case *map[string]uint32:
-		return newStringUint32MapValue(value.(*map[string]uint32))
+		return newStringUint32MapValue(v)
 	case *map[int]uint32:
-		return newIntUint32MapValue(value.(*map[int]uint32))
+		return newIntUint32MapValue(v)
 	case *map[int8]uint32:
-		return newInt8Uint32MapValue(value.(*map[int8]uint32))
+		return newInt8Uint32MapValue(v)
 	case *map[int16]uint32:
-		return newInt16Uint32MapValue(value.(*map[int16]uint32))
+		return newInt16Uint32MapValue(v)
 	case *map[int32]uint32:
-		return newInt32Uint32MapValue(value.(*map[int32]uint32))
+		return newInt32Uint32MapValue(v)
 	case *map[int64]uint32:
-		return newInt64Uint32MapValue(value.(*map[int64]uint32))
+		return newInt64Uint32MapValue(v)
 	case *map[uint]uint32:
-		return newUintUint32MapValue(value.(*map[uint]uint32))
+		return newUintUint32MapValue(v)
 	case *map[uint8]uint32:
-		return newUint8Uint32MapValue(value.(*map[uint8]uint32))
+		return newUint8Uint32MapValue(v)
 	case *map[uint16]uint32:
-		return newUint16Uint32MapValue(value.(*map[uint16]uint32))
+		return newUint16Uint32MapValue(v)
 	case *map[uint32]uint32:
-		return newUint32Uint32MapValue(value.(*map[uint32]uint32))
+		return newUint32Uint32MapValue(v)
 	case *map[uint64]uint32:
-		return newUint64Uint32MapValue(value.(*map[uint64]uint32))
+		return newUint64Uint32MapValue(v)
 	case *map[string]uint64:
-		return newStringUint64MapValue(value.(*map[string]uint64))
+		return newStringUint64MapValue(v)
 	case *map[int]uint64:
-		return newIntUint64MapValue(value.(*map[int]uint64))
+		return newIntUint64MapValue(v)
 	case *map[int8]uint64:
-		return newInt8Uint64MapValue(value.(*map[int8]uint64))
+		return newInt8Uint64MapValue(v)
 	case *map[int16]uint64:
-		return newInt16Uint64MapValue(value.(*map[int16]uint64))
+		return newInt16Uint64MapValue(v)
 	case *map[int32]uint64:
-		return newInt32Uint64MapValue(value.(*map[int32]uint64))
+		return newInt32Uint64MapValue(v)
 	case *map[int64]uint64:
-		return newInt64Uint64MapValue(value.(*map[int64]uint64))
+		return newInt64Uint64MapValue(v)
 	case *map[uint]uint64:
-		return newUintUint64MapValue(value.(*map[uint]uint64))
+		return newUintUint64MapValue(v)
 	case *map[uint8]uint64:
-		return newUint8Uint64MapValue(value.(*map[uint8]uint64))
+		return newUint8Uint64MapValue(v)
 	case *map[uint16]uint64:
-		return newUint16Uint64MapValue(value.(*map[uint16]uint64))
+		return newUint16Uint64MapValue(v)
 	case *map[uint32]uint64:
-		return newUint32Uint64MapValue(value.(*map[uint32]uint64))
+		return newUint32Uint64MapValue(v)
 	case *map[uint64]uint64:
-		return newUint64Uint64MapValue(value.(*map[uint64]uint64))
+		return newUint64Uint64MapValue(v)
 	case *map[string]int:
-		return newStringIntMapValue(value.(*map[string]int))
+		return newStringIntMapValue(v)
 	case *map[int]int:
-		return newIntIntMapValue(value.(*map[int]int))
+		return newIntIntMapValue(v)
 	case *map[int8]int:
-		return newInt8IntMapValue(value.(*map[int8]int))
+		return newInt8IntMapValue(v)
 	case *map[int16]int:
-		return newInt16IntMapValue(value.(*map[int16]int))
+		return newInt16IntMapValue(v)
 	case *map[int32]int:
-		return newInt32IntMapValue(value.(*map[int32]int))
+		return newInt32IntMapValue(v)
 	case *map[int64]int:
-		return newInt64IntMapValue(value.(*map[int64]int))
+		return newInt64IntMapValue(v)
 	case *map[uint]int:
-		return newUintIntMapValue(value.(*map[uint]int))
+		return newUintIntMapValue(v)
 	case *map[uint8]int:
-		return newUint8IntMapValue(value.(*map[uint8]int))
+		return newUint8IntMapValue(v)
 	case *map[uint16]int:
-		return newUint16IntMapValue(value.(*map[uint16]int))
+		return newUint16IntMapValue(v)
 	case *map[uint32]int:
-		return newUint32IntMapValue(value.(*map[uint32]int))
+		return newUint32IntMapValue(v)
 	case *map[uint64]int:
-		return newUint64IntMapValue(value.(*map[uint64]int))
+		return newUint64IntMapValue(v)
 	case *map[string]int8:
-		return newStringInt8MapValue(value.(*map[string]int8))
+		return newStringInt8MapValue(v)
 	case *map[int]int8:
-		return newIntInt8MapValue(value.(*map[int]int8))
+		return newIntInt8MapValue(v)
 	case *map[int8]int8:
-		return newInt8Int8MapValue(value.(*map[int8]int8))
+		return newInt8Int8MapValue(v)
 	case *map[int16]int8:
-		return newInt16Int8MapValue(value.(*map[int16]int8))
+		return newInt16Int8MapValue(v)
 	case *map[int32]int8:
-		return newInt32Int8MapValue(value.(*map[int32]int8))
+		return newInt32Int8MapValue(v)
 	case *map[int64]int8:
-		return newInt64Int8MapValue(value.(*map[int64]int8))
+		return newInt64Int8MapValue(v)
 	case *map[uint]int8:
-		return newUintInt8MapValue(value.(*map[uint]int8))
+		return newUintInt8MapValue(v)
 	case *map[uint8]int8:
-		return newUint8Int8MapValue(value.(*map[uint8]int8))
+		return newUint8Int8MapValue(v)
 	case *map[uint16]int8:
-		return newUint16Int8MapValue(value.(*map[uint16]int8))
+		return newUint16Int8MapValue(v)
 	case *map[uint32]int8:
-		return newUint32Int8MapValue(value.(*map[uint32]int8))
+		return newUint32Int8MapValue(v)
 	case *map[uint64]int8:
-		return newUint64Int8MapValue(value.(*map[uint64]int8))
+		return newUint64Int8MapValue(v)
 	case *map[string]int16:
-		return newStringInt16MapValue(value.(*map[string]int16))
+		return newStringInt16MapValue(v)
 	case *map[int]int16:
-		return newIntInt16MapValue(value.(*map[int]int16))
+		return newIntInt16MapValue(v)
 	case *map[int8]int16:
-		return newInt8Int16MapValue(value.(*map[int8]int16))
+		return newInt8Int16MapValue(v)
 	case *map[int16]int16:
-		return newInt16Int16MapValue(value.(*map[int16]int16))
+		return newInt16Int16MapValue(v)
 	case *map[int32]int16:
-		return newInt32Int16MapValue(value.(*map[int32]int16))
+		return newInt32Int16MapValue(v)
 	case *map[int64]int16:
-		return newInt64Int16MapValue(value.(*map[int64]int16))
+		return newInt64Int16MapValue(v)
 	case *map[uint]int16:
-		return newUintInt16MapValue(value.(*map[uint]int16))
+		return newUintInt16MapValue(v)
 	case *map[uint8]int16:
-		return newUint8Int16MapValue(value.(*map[uint8]int16))
+		return newUint8Int16MapValue(v)
 	case *map[uint16]int16:
-		return newUint16Int16MapValue(value.(*map[uint16]int16))
+		return newUint16Int16MapValue(v)
 	case *map[uint32]int16:
-		return newUint32Int16MapValue(value.(*map[uint32]int16))
+		return newUint32Int16MapValue(v)
 	case *map[uint64]int16:
-		return newUint64Int16MapValue(value.(*map[uint64]int16))
+		return newUint64Int16MapValue(v)
 	case *map[string]int32:
-		return newStringInt32MapValue(value.(*map[string]int32))
+		return newStringInt32MapValue(v)
 	case *map[int]int32:
-		return newIntInt32MapValue(value.(*map[int]int32))
+		return newIntInt32MapValue(v)
 	case *map[int8]int32:
-		return newInt8Int32MapValue(value.(*map[int8]int32))
+		return newInt8Int32MapValue(v)
 	case *map[int16]int32:
-		return newInt16Int32MapValue(value.(*map[int16]int32))
+		return newInt16Int32MapValue(v)
 	case *map[int32]int32:
-		return newInt32Int32MapValue(value.(*map[int32]int32))
+		return newInt32Int32MapValue(v)
 	case *map[int64]int32:
-		return newInt64Int32MapValue(value.(*map[int64]int32))
+		return newInt64Int32MapValue(v)
 	case *map[uint]int32:
-		return newUintInt32MapValue(value.(*map[uint]int32))
+		return newUintInt32MapValue(v)
 	case *map[uint8]int32:
-		return newUint8Int32MapValue(value.(*map[uint8]int32))
+		return newUint8Int32MapValue(v)
 	case *map[uint16]int32:
-		return newUint16Int32MapValue(value.(*map[uint16]int32))
+		return newUint16Int32MapValue(v)
 	case *map[uint32]int32:
-		return newUint32Int32MapValue(value.(*map[uint32]int32))
+		return newUint32Int32MapValue(v)
 	case *map[uint64]int32:
-		return newUint64Int32MapValue(value.(*map[uint64]int32))
+		return newUint64Int32MapValue(v)
 	case *map[string]int64:
-		return newStringInt64MapValue(value.(*map[string]int64))
+		return newStringInt64MapValue(v)
 	case *map[int]int64:
-		return newIntInt64MapValue(value.(*map[int]int64))
+		return newIntInt64MapValue(v)
 	case *map[int8]int64:
-		return newInt8Int64MapValue(value.(*map[int8]int64))
+		return newInt8Int64MapValue(v)
 	case *map[int16]int64:
-		return newInt16Int64MapValue(value.(*map[int16]int64))
+		return newInt16Int64MapValue(v)
 	case *map[int32]int64:
-		return newInt32Int64MapValue(value.(*map[int32]int64))
+		return newInt32Int64MapValue(v)
 	case *map[int64]int64:
-		return newInt64Int64MapValue(value.(*map[int64]int64))
+		return newInt64Int64MapValue(v)
 	case *map[uint]int64:
-		return newUintInt64MapValue(value.(*map[uint]int64))
+		return newUintInt64MapValue(v)
 	case *map[uint8]int64:
-		return newUint8Int64MapValue(value.(*map[uint8]int64))
+		return newUint8Int64MapValue(v)
 	case *map[uint16]int64:
-		return newUint16Int64MapValue(value.(*map[uint16]int64))
+		return newUint16Int64MapValue(v)
 	case *map[uint32]int64:
-		return newUint32Int64MapValue(value.(*map[uint32]int64))
+		return newUint32Int64MapValue(v)
 	case *map[uint64]int64:
-		return newUint64Int64MapValue(value.(*map[uint64]int64))
+		return newUint64Int64MapValue(v)
 	case *map[string]float64:
-		return newStringFloat64MapValue(value.(*map[string]float64))
+		return newStringFloat64MapValue(v)
 	case *map[int]float64:
-		return newIntFloat64MapValue(value.(*map[int]float64))
+		return newIntFloat64MapValue(v)
 	case *map[int8]float64:
-		return newInt8Float64MapValue(value.(*map[int8]float64))
+		return newInt8Float64MapValue(v)
 	case *map[int16]float64:
-		return newInt16Float64MapValue(value.(*map[int16]float64))
+		return newInt16Float64MapValue(v)
 	case *map[int32]float64:
-		return newInt32Float64MapValue(value.(*map[int32]float64))
+		return newInt32Float64MapValue(v)
 	case *map[int64]float64:
-		return newInt64Float64MapValue(value.(*map[int64]float64))
+		return newInt64Float64MapValue(v)
 	case *map[uint]float64:
-		return newUintFloat64MapValue(value.(*map[uint]float64))
+		return newUintFloat64MapValue(v)
 	case *map[uint8]float64:
-		return newUint8Float64MapValue(value.(*map[uint8]float64))
+		return newUint8Float64MapValue(v)
 	case *map[uint16]float64:
-		return newUint16Float64MapValue(value.(*map[uint16]float64))
+		return newUint16Float64MapValue(v)
 	case *map[uint32]float64:
-		return newUint32Float64MapValue(value.(*map[uint32]float64))
+		return newUint32Float64MapValue(v)
 	case *map[uint64]float64:
-		return newUint64Float64MapValue(value.(*map[uint64]float64))
+		return newUint64Float64MapValue(v)
 	case *map[string]float32:
-		return newStringFloat32MapValue(value.(*map[string]float32))
+		return newStringFloat32MapValue(v)
 	case *map[int]float32:
-		return newIntFloat32MapValue(value.(*map[int]float32))
+		return newIntFloat32MapValue(v)
 	case *map[int8]float32:
-		return newInt8Float32MapValue(value.(*map[int8]float32))
+		return newInt8Float32MapValue(v)
 	case *map[int16]float32:
-		return newInt16Float32MapValue(value.(*map[int16]float32))
+		return newInt16Float32MapValue(v)
 	case *map[int32]float32:
-		return newInt32Float32MapValue(value.(*map[int32]float32))
+		return newInt32Float32MapValue(v)
 	case *map[int64]float32:
-		return newInt64Float32MapValue(value.(*map[int64]float32))
+		return newInt64Float32MapValue(v)
 	case *map[uint]float32:
-		return newUintFloat32MapValue(value.(*map[uint]float32))
+		return newUintFloat32MapValue(v)
 	case *map[uint8]float32:
-		return newUint8Float32MapValue(value.(*map[uint8]float32))
+		return newUint8Float32MapValue(v)
 	case *map[uint16]float32:
-		return newUint16Float32MapValue(value.(*map[uint16]float32))
+		return newUint16Float32MapValue(v)
 	case *map[uint32]float32:
-		return newUint32Float32MapValue(value.(*map[uint32]float32))
+		return newUint32Float32MapValue(v)
 	case *map[uint64]float32:
-		return newUint64Float32MapValue(value.(*map[uint64]float32))
+		return newUint64Float32MapValue(v)
 	case *map[string]time.Duration:
-		return newStringDurationMapValue(value.(*map[string]time.Duration))
+		return newStringDurationMapValue(v)
 	case *map[int]time.Duration:
-		return newIntDurationMapValue(value.(*map[int]time.Duration))
+		return newIntDurationMapValue(v)
 	case *map[int8]time.Duration:
-		return newInt8DurationMapValue(value.(*map[int8]time.Duration))
+		return newInt8DurationMapValue(v)
 	case *map[int16]time.Duration:
-		return newInt16DurationMapValue(value.(*map[int16]time.Duration))
+		return newInt16DurationMapValue(v)
 	case *map[int32]time.Duration:
-		return newInt32DurationMapValue(value.(*map[int32]time.Duration))
+		return newInt32DurationMapValue(v)
 	case *map[int64]time.Duration:
-		return newInt64DurationMapValue(value.(*map[int64]time.Duration))
+		return newInt64DurationMapValue(v)
 	case *map[uint]time.Duration:
-		return newUintDurationMapValue(value.(*map[uint]time.Duration))
+		return newUintDurationMapValue(v)
 	case *map[uint8]time.Duration:
-		return newUint8DurationMapValue(value.(*map[uint8]time.Duration))
+		return newUint8DurationMapValue(v)
 	case *map[uint16]time.Duration:
-		return newUint16DurationMapValue(value.(*map[uint16]time.Duration))
+		return newUint16DurationMapValue(v)
 	case *map[uint32]time.Duration:
-		return newUint32DurationMapValue(value.(*map[uint32]time.Duration))
+		return newUint32DurationMapValue(v)
 	case *map[uint64]time.Duration:
-		return newUint64DurationMapValue(value.(*map[uint64]time.Duration))
+		return newUint64DurationMapValue(v)
 	case *map[string]net.IP:
-		return newStringIPMapValue(value.(*map[string]net.IP))
+		return newStringIPMapValue(v)
 	case *map[int]net.IP:
-		return newIntIPMapValue(value.(*map[int]net.IP))
+		return newIntIPMapValue(v)
 	case *map[int8]net.IP:
-		return newInt8IPMapValue(value.(*map[int8]net.IP))
+		return newInt8IPMapValue(v)
 	case *map[int16]net.IP:
-		return newInt16IPMapValue(value.(*map[int16]net.IP))
+		return newInt16IPMapValue(v)
 	case *map[int32]net.IP:
-		return newInt32IPMapValue(value.(*map[int32]net.IP))
+		return newInt32IPMapValue(v)
 	case *map[int64]net.IP:
-		return newInt64IPMapValue(value.(*map[int64]net.IP))
+		return newInt64IPMapValue(v)
 	case *map[uint]net.IP:
-		return newUintIPMapValue(value.(*map[uint]net.IP))
+		return newUintIPMapValue(v)
 	case *map[uint8]net.IP:
-		return newUint8IPMapValue(value.(*map[uint8]net.IP))
+		return newUint8IPMapValue(v)
 	case *map[uint16]net.IP:
-		return newUint16IPMapValue(value.(*map[uint16]net.IP))
+		return newUint16IPMapValue(v)
 	case *map[uint32]net.IP:
-		return newUint32IPMapValue(value.(*map[uint32]net.IP))
+		return newUint32IPMapValue(v)
 	case *map[uint64]net.IP:
-		return newUint64IPMapValue(value.(*map[uint64]net.IP))
+		return newUint64IPMapValue(v)
 	case *map[string]HexBytes:
-		return newStringHexBytesMapValue(value.(*map[string]HexBytes))
+		return newStringHexBytesMapValue(v)
 	case *map[int]HexBytes:
-		return newIntHexBytesMapValue(value.(*map[int]HexBytes))
+		return newIntHexBytesMapValue(v)
 	case *map[int8]HexBytes:
-		return newInt8HexBytesMapValue(value.(*map[int8]HexBytes))
+		return newInt8HexBytesMapValue(v)
 	case *map[int16]HexBytes:
-		return newInt16HexBytesMapValue(value.(*map[int16]HexBytes))
+		return newInt16HexBytesMapValue(v)
 	case *map[int32]HexBytes:
-		return newInt32HexBytesMapValue(value.(*map[int32]HexBytes))
+		return newInt32HexBytesMapValue(v)
 	case *map[int64]HexBytes:
-		return newInt64HexBytesMapValue(value.(*map[int64]HexBytes))
+		return newInt64HexBytesMapValue(v)
 	case *map[uint]HexBytes:
-		return newUintHexBytesMapValue(value.(*map[uint]HexBytes))
+		return newUintHexBytesMapValue(v)
 	case *map[uint8]HexBytes:
-		return newUint8HexBytesMapValue(value.(*map[uint8]HexBytes))
+		return newUint8HexBytesMapValue(v)
 	case *map[uint16]HexBytes:
-		return newUint16HexBytesMapValue(value.(*map[uint16]HexBytes))
+		return newUint16HexBytesMapValue(v)
 	case *map[uint32]HexBytes:
-		return newUint32HexBytesMapValue(value.(*map[uint32]HexBytes))
+		return newUint32HexBytesMapValue(v)
 	case *map[uint64]HexBytes:
-		return newUint64HexBytesMapValue(value.(*map[uint64]HexBytes))
+		return newUint64HexBytesMapValue(v)
 	case *map[string]*regexp.Regexp:
-		return newStringRegexpMapValue(value.(*map[string]*regexp.Regexp))
+		return newStringRegexpMapValue(v)
 	case *map[int]*regexp.Regexp:
-		return newIntRegexpMapValue(value.(*map[int]*regexp.Regexp))
+		return newIntRegexpMapValue(v)
 	case *map[int8]*regexp.Regexp:
-		return newInt8RegexpMapValue(value.(*map[int8]*regexp.Regexp))
+		return newInt8RegexpMapValue(v)
 	case *map[int16]*regexp.Regexp:
-		return newInt16RegexpMapValue(value.(*map[int16]*regexp.Regexp))
+		return newInt16RegexpMapValue(v)
 	case *map[int32]*regexp.Regexp:
-		return newInt32RegexpMapValue(value.(*map[int32]*regexp.Regexp))
+		return newInt32RegexpMapValue(v)
 	case *map[int64]*regexp.Regexp:
-		return newInt64RegexpMapValue(value.(*map[int64]*regexp.Regexp))
+		return newInt64RegexpMapValue(v)
 	case *map[uint]*regexp.Regexp:
-		return newUintRegexpMapValue(value.(*map[uint]*regexp.Regexp))
+		return newUintRegexpMapValue(v)
 	case *map[uint8]*regexp.Regexp:
-		return newUint8RegexpMapValue(value.(*map[uint8]*regexp.Regexp))
+		return newUint8RegexpMapValue(v)
 	case *map[uint16]*regexp.Regexp:
-		return newUint16RegexpMapValue(value.(*map[uint16]*regexp.Regexp))
+		return newUint16RegexpMapValue(v)
 	case *map[uint32]*regexp.Regexp:
-		return newUint32RegexpMapValue(value.(*map[uint32]*regexp.Regexp))
+		return newUint32RegexpMapValue(v)
 	case *map[uint64]*regexp.Regexp:
-		return newUint64RegexpMapValue(value.(*map[uint64]*regexp.Regexp))
+		return newUint64RegexpMapValue(v)
 	case *map[string]net.IPNet:
-		return newStringIPNetMapValue(value.(*map[string]net.IPNet))
+		return newStringIPNetMapValue(v)
 	case *map[int]net.IPNet:
-		return newIntIPNetMapValue(value.(*map[int]net.IPNet))
+		return newIntIPNetMapValue(v)
 	case *map[int8]net.IPNet:
-		return newInt8IPNetMapValue(value.(*map[int8]net.IPNet))
+		return newInt8IPNetMapValue(v)
 	case *map[int16]net.IPNet:
-		return newInt16IPNetMapValue(value.(*map[int16]net.IPNet))
+		return newInt16IPNetMapValue(v)
 	case *map[int32]net.IPNet:
-		return newInt32IPNetMapValue(value.(*map[int32]net.IPNet))
+		return newInt32IPNetMapValue(v)
 	case *map[int64]net.IPNet:
-		return newInt64IPNetMapValue(value.(*map[int64]net.IPNet))
+		return newInt64IPNetMapValue(v)
 	case *map[uint]net.IPNet:
-		return newUintIPNetMapValue(value.(*map[uint]net.IPNet))
+		return newUintIPNetMapValue(v)
 	case *map[uint8]net.IPNet:
-		return newUint8IPNetMapValue(value.(*map[uint8]net.IPNet))
+		return newUint8IPNetMapValue(v)
 	case *map[uint16]net.IPNet:
-		return newUint16IPNetMapValue(value.(*map[uint16]net.IPNet))
+		return newUint16IPNetMapValue(v)
 	case *map[uint32]net.IPNet:
-		return newUint32IPNetMapValue(value.(*map[uint32]net.IPNet))
+		return newUint32IPNetMapValue(v)
 	case *map[uint64]net.IPNet:
-		return newUint64IPNetMapValue(value.(*map[uint64]net.IPNet))
+		return newUint64IPNetMapValue(v)
 	default:
 		return nil
 	}
