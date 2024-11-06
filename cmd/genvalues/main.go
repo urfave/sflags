@@ -54,10 +54,10 @@ func parseGenerated(value interface{}) Value {
 }
 
 func parseGeneratedPtrs(value interface{}) Value {
-	switch value.(type) {
+	switch v := value.(type) {
 	{{range .Values}}{{ if ne (.|InterfereType) (.Type) }}\nn
 	case *{{.Type}}:
-		return new{{.|Name}}Value(value.(*{{.Type}}))
+		return new{{.|Name}}Value(v)
 	{{end}}{{end}}\nn
 	default:
 		return nil
