@@ -3,7 +3,7 @@ package gkingpin
 import (
 	"unicode/utf8"
 
-	"github.com/alecthomas/kingpin"
+	"github.com/alecthomas/kingpin/v2"
 	"github.com/octago/sflags"
 )
 
