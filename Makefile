@@ -8,7 +8,7 @@ PKGSDIRS=$(shell find -L . -type f -name "*.go")
 
 all: prepare
 
-ci: info vet lint check test_v coverage
+ci: tools info vet lint check test_v coverage
 
 coverage:
 	@echo "$(OK_COLOR)Generate coverage$(NO_COLOR)"
