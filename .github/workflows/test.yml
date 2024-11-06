@@ -33,4 +33,4 @@ jobs:
         run: echo "${GITHUB_WORKSPACE}/.local/bin" >>"${GITHUB_PATH}"
 
       - name: Run tests
-        run: go test ./...      
+        run: make test_v
