@@ -32,5 +32,8 @@ jobs:
       - name: Set PATH
         run: echo "${GITHUB_WORKSPACE}/.local/bin" >>"${GITHUB_PATH}"
 
+      - name: Install tools
+        run: make tools
+
       - name: Run CI
         run: make ci
