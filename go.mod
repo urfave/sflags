@@ -10,6 +10,7 @@ require (
 	github.com/spf13/pflag v1.0.3
 	github.com/stretchr/testify v1.9.0
 	github.com/urfave/cli/v2 v2.27.5
+	github.com/urfave/cli/v3 v3.0.0-alpha9.3
 	golang.org/x/text v0.19.0
 )
 
