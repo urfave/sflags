@@ -11,6 +11,7 @@ import (
 	"os"
 	"os/exec"
 	"reflect"
+	"sort"
 	"strings"
 	"text/template"
 	"unicode"
@@ -538,6 +539,7 @@ func main() {
 	for _, value := range values {
 		imports = append(imports, value.Import...)
 	}
+	sort.Strings(imports)
 
 	baseT := template.New("genvalues").Funcs(template.FuncMap{
 		"Lower": strings.ToLower,
