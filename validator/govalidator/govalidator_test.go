@@ -3,7 +3,7 @@ package govalidator
 import (
 	"flag"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"testing"
 
@@ -27,7 +27,7 @@ func ExampleNew() {
 		log.Fatalf("err: %v", err)
 	}
 	fs.Init("text", flag.ContinueOnError)
-	fs.SetOutput(ioutil.Discard)
+	fs.SetOutput(io.Discard)
 
 	// if we pass a wrong domain to the host flag, we'll get a error.
 	if err = fs.Parse([]string{"-host", "wrong domain"}); err != nil {
