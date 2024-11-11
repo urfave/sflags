@@ -1,16 +1,18 @@
-package gkingpin
+package gcli
 
 import (
+	"context"
 	"errors"
+	"io"
 	"testing"
 
-	"github.com/alecthomas/kingpin/v2"
 	"github.com/octago/sflags"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"github.com/urfave/cli/v3"
 )
 
-type cfg1 struct {
+type cfg2 struct {
 	StringValue1 string
 	StringValue2 string `flag:"string-value-two s"`
 
@@ -19,7 +21,7 @@ type cfg1 struct {
 	StringSliceValue1 []string
 }
 
-func TestParse(t *testing.T) {
+func TestParseV3(t *testing.T) {
 	tests := []struct {
 		name string
 
@@ -27,11 +29,11 @@ func TestParse(t *testing.T) {
 		args    []string
 		expCfg  interface{}
 		expErr1 error // sflag Parse error
-		expErr2 error // kingpin Parse error
+		expErr2 error // cli Parse error
 	}{
 		{
-			name: "Test cfg1",
-			cfg: &cfg1{
+			name: "Test cfg2",
+			cfg: &cfg2{
 				StringValue1: "string_value1_value",
 				StringValue2: "string_value2_value",
 
@@ -39,7 +41,7 @@ func TestParse(t *testing.T) {
 
 				StringSliceValue1: []string{"one", "two"},
 			},
-			expCfg: &cfg1{
+			expCfg: &cfg2{
 				StringValue1: "string_value1_value2",
 				StringValue2: "string_value2_value2",
 
@@ -58,55 +60,53 @@ func TestParse(t *testing.T) {
 			},
 		},
 		{
-			name: "Test cfg1 no args",
-			cfg: &cfg1{
+			name: "Test cfg2 no args",
+			cfg: &cfg2{
 				StringValue1: "string_value1_value",
 				StringValue2: "",
 			},
-			expCfg: &cfg1{
+			expCfg: &cfg2{
 				StringValue1: "string_value1_value",
 				StringValue2: "",
 			},
 			args: []string{},
 		},
 		{
-			name: "Test cfg1 short option",
-			cfg: &cfg1{
+			name: "Test cfg2 short option",
+			cfg: &cfg2{
 				StringValue2: "string_value2_value",
 			},
-			expCfg: &cfg1{
+			expCfg: &cfg2{
 				StringValue2: "string_value2_value2",
 			},
 			args: []string{
-				"-s", "string_value2_value2",
+				"-s=string_value2_value2",
 			},
 		},
 		{
-			name: "Test cfg1 without default values",
-			cfg:  &cfg1{},
-			expCfg: &cfg1{
+			name: "Test cfg2 without default values",
+			cfg:  &cfg2{},
+			expCfg: &cfg2{
 				StringValue1: "string_value1_value2",
 				StringValue2: "string_value2_value2",
 
-				CounterValue1: 1,
+				CounterValue1: 3,
 			},
 			args: []string{
 				"--string-value1", "string_value1_value2",
 				"--string-value-two", "string_value2_value2",
-				// kingpin can't pass value for boolean arguments.
-				//"--counter-value1", "2",
-				"--counter-value1",
+				"--counter-value1=2", "--counter-value1",
 			},
 		},
 		{
-			name: "Test cfg1 bad option",
-			cfg: &cfg1{
+			name: "Test cfg2 bad option",
+			cfg: &cfg2{
 				StringValue1: "string_value1_value",
 			},
 			args: []string{
 				"--bad-value=string_value1_value2",
 			},
-			expErr2: errors.New("unknown long flag '--bad-value'"),
+			expErr2: errors.New("flag provided but not defined: -bad-value"),
 		},
 		{
 			name:    "Test bad cfg value",
@@ -114,12 +114,11 @@ func TestParse(t *testing.T) {
 			expErr1: errors.New("object must be a pointer to struct or interface"),
 		},
 	}
+	// forbid urfave/cli to exit
+	cli.OsExiter = func(i int) {}
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			app := kingpin.New("testApp", "")
-			app.Terminate(nil)
-
-			err := ParseTo(test.cfg, app)
+			flags, err := ParseV3(test.cfg)
 			if test.expErr1 != nil {
 				require.Error(t, err)
 				require.Equal(t, test.expErr1, err)
@@ -129,8 +128,19 @@ func TestParse(t *testing.T) {
 			if err != nil {
 				return
 			}
+			cmd := &cli.Command{}
+			cmd.Action = func(_ context.Context, c *cli.Command) error {
+				return nil
+			}
+			cmd.UseShortOptionHandling = true
+			cli.ErrWriter = io.Discard
+			cmd.OnUsageError = func(ctx context.Context, cmd *cli.Command, err error, isSubcommand bool) error {
+				return err
+			}
 
-			_, err = app.Parse(test.args)
+			cmd.Flags = flags
+			args := append([]string{"cliApp"}, test.args...)
+			err = cmd.Run(context.Background(), args)
 			if test.expErr2 != nil {
 				require.Error(t, err)
 				require.Equal(t, test.expErr2, err)

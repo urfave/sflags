@@ -3,7 +3,7 @@ package gkingpin
 import (
 	"unicode/utf8"
 
-	"github.com/alecthomas/kingpin"
+	"github.com/alecthomas/kingpin/v2"
 	"github.com/octago/sflags"
 )
 
@@ -15,10 +15,6 @@ type flagger interface {
 // that are parsed from some config structure, and put it to dst.
 func GenerateTo(src []*sflags.Flag, dst flagger) {
 	for _, srcFlag := range src {
-		name := srcFlag.Name
-		if srcFlag.Short != "" {
-			name += ", " + srcFlag.Short
-		}
 		flag := dst.Flag(srcFlag.Name, srcFlag.Usage)
 		flag.SetValue(srcFlag.Value)
 		if srcFlag.EnvName != "" {

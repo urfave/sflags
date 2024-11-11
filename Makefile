@@ -8,7 +8,7 @@ PKGSDIRS=$(shell find -L . -type f -name "*.go")
 
 all: prepare
 
-travis: info vet lint check test_v coverage
+ci: vet check test_v coverage
 
 coverage:
 	@echo "$(OK_COLOR)Generate coverage$(NO_COLOR)"
@@ -30,7 +30,7 @@ lint:
 
 check:
 	@echo "$(OK_COLOR)Run golangci-lint$(NO_COLOR)"
-	@golangci-lint run --no-config --exclude-use-default=true --max-same-issues=10 --disable=gosimple --disable=golint --enable=megacheck --enable=interfacer  --enable=goconst --enable=misspell --enable=unparam --enable=goimports --disable=errcheck --disable=ineffassign  --disable=gocyclo --disable=gas
+	@golangci-lint run --no-config --exclude-use-default=true --max-same-issues=10 --disable=gosimple --enable=staticcheck --enable=unused --enable=goconst --enable=misspell --enable=unparam --enable=goimports --disable=errcheck --disable=ineffassign  --disable=gocyclo --disable=gosec
 
 vet:
 	@echo "$(OK_COLOR)Run vet$(NO_COLOR)"
@@ -42,7 +42,7 @@ race:
 
 fmt:
 	@echo "$(OK_COLOR)Formatting$(NO_COLOR)"
-	@echo $(PKGSDIRS) | xargs -I '{p}' -n1 goimports -w {p}
+	@echo $(PKGSDIRS) | xargs goimports -w
 
 info:
 	depscheck -totalonly -tests .
@@ -57,5 +57,5 @@ tools:
 	go get -u github.com/warmans/golocc
 	go get -u github.com/divan/depscheck
 	GO111MODULE=off go get -u github.com/golangci/golangci-lint/cmd/golangci-lint
-	cd ${GOPATH}/src/github.com/golangci/golangci-lint/cmd/golangci-lint
-    go install -ldflags "-X 'main.version=$(git describe --tags)' -X 'main.commit=$(git rev-parse --short HEAD)' -X 'main.date=$(date)'"
+	cd ${GOPATH}/src/github.com/golangci/golangci-lint/cmd/golangci-lint \
+   && go install -ldflags "-X 'main.version=$(git describe --tags)' -X 'main.commit=$(git rev-parse --short HEAD)' -X 'main.date=$(date)'"

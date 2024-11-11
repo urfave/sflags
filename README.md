@@ -176,7 +176,7 @@ Field int `flag:",deprecated"`
 If you specify description in description tag (`desc` by default) it will be used in USAGE section.
 
 ```
-Addr string `desc:"HTTP address"`
+Addr string `desc:"HTTP host"`
 ```
 this description produces something like:
 ```

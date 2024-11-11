@@ -9,7 +9,7 @@ import (
 	"regexp"
 	"time"
 
-	"github.com/alecthomas/kingpin"
+	"github.com/alecthomas/kingpin/v2"
 	"github.com/davecgh/go-spew/spew"
 	"github.com/octago/sflags"
 	"github.com/octago/sflags/gen/gkingpin"
