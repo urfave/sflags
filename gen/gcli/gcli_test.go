@@ -2,13 +2,13 @@ package gcli
 
 import (
 	"errors"
-	"io/ioutil"
+	"io"
 	"testing"
 
 	"github.com/octago/sflags"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/urfave/cli"
+	"github.com/urfave/cli/v2"
 )
 
 type cfg1 struct {
@@ -131,7 +131,8 @@ func TestParse(t *testing.T) {
 			cliApp.Action = func(c *cli.Context) error {
 				return nil
 			}
-			cli.ErrWriter = ioutil.Discard
+			cliApp.UseShortOptionHandling = true
+			cli.ErrWriter = io.Discard
 			cliApp.OnUsageError = func(_ *cli.Context, err error, _ bool) error {
 				return err
 			}

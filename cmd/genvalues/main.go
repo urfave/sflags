@@ -15,6 +15,9 @@ import (
 	"text/template"
 	"unicode"
 	"unicode/utf8"
+
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 )
 
 const (
@@ -36,14 +39,14 @@ var MapAllowedKinds = []reflect.Kind{ \nn
 }
 
 func parseGenerated(value interface{}) Value {
-	switch value.(type) {
+	switch v := value.(type) {
 	{{range .Values}}{{ if eq (.|InterfereType) (.Type) }}\nn
 	case *{{.Type}}:
-		return new{{.|Name}}Value(value.(*{{.Type}}))
+		return new{{.|Name}}Value(v)
 	{{ end }}{{ end }}\nn
 	{{range .Values}}{{ if not .NoSlice }}\nn
 	case *[]{{.Type}}:
-		return new{{.|Plural}}Value(value.(*[]{{.Type}}))
+		return new{{.|Plural}}Value(v)
 	{{end}}{{end}}\nn
 	default:
 		return nil
@@ -51,10 +54,10 @@ func parseGenerated(value interface{}) Value {
 }
 
 func parseGeneratedPtrs(value interface{}) Value {
-	switch value.(type) {
+	switch v := value.(type) {
 	{{range .Values}}{{ if ne (.|InterfereType) (.Type) }}\nn
 	case *{{.Type}}:
-		return new{{.|Name}}Value(value.(*{{.Type}}))
+		return new{{.|Name}}Value(v)
 	{{end}}{{end}}\nn
 	default:
 		return nil
@@ -62,11 +65,11 @@ func parseGeneratedPtrs(value interface{}) Value {
 }
 
 func parseGeneratedMap(value interface{}) Value {
-	switch value.(type) {
+	switch v := value.(type) {
 	{{range .Values}}{{ if not .NoMap }}\nn
 	{{ $value := . }}{{range $mapKeyTypes}}\nn
 	case *map[{{.}}]{{$value.Type}}:
-		return new{{MapValueName $value . | Title}}(value.(*map[{{.}}]{{$value.Type}}))
+		return new{{MapValueName $value . | Title}}(v)
 	{{end}}{{end}}{{end}}\nn
 	default:
 		return nil
@@ -523,11 +526,13 @@ func main() {
 	err = json.NewDecoder(r).Decode(&values)
 	fatalIfError(err)
 
+	caser := cases.Title(language.English, cases.NoLower)
+
 	valueName := func(v *value) string {
 		if v.Name != "" {
-			return strings.Title(v.Name)
+			return caser.String(v.Name)
 		}
-		return strings.Title(v.Type)
+		return caser.String(v.Type)
 	}
 	imports := []string{}
 	for _, value := range values {
@@ -536,7 +541,7 @@ func main() {
 
 	baseT := template.New("genvalues").Funcs(template.FuncMap{
 		"Lower": strings.ToLower,
-		"Title": strings.Title,
+		"Title": caser.String,
 		"Format": func(v *value) string {
 			if v.Format != "" {
 				return v.Format
@@ -679,37 +684,37 @@ func camelToLower(s string) string {
 //
 // Examples
 //
-//   "" =>                     [""]
-//   "lowercase" =>            ["lowercase"]
-//   "Class" =>                ["Class"]
-//   "MyClass" =>              ["My", "Class"]
-//   "MyC" =>                  ["My", "C"]
-//   "HTML" =>                 ["HTML"]
-//   "PDFLoader" =>            ["PDF", "Loader"]
-//   "AString" =>              ["A", "String"]
-//   "SimpleXMLParser" =>      ["Simple", "XML", "Parser"]
-//   "vimRPCPlugin" =>         ["vim", "RPC", "Plugin"]
-//   "GL11Version" =>          ["GL", "11", "Version"]
-//   "99Bottles" =>            ["99", "Bottles"]
-//   "May5" =>                 ["May", "5"]
-//   "BFG9000" =>              ["BFG", "9000"]
-//   "BöseÜberraschung" =>     ["Böse", "Überraschung"]
-//   "Two  spaces" =>          ["Two", "  ", "spaces"]
-//   "BadUTF8\xe2\xe2\xa1" =>  ["BadUTF8\xe2\xe2\xa1"]
+//	"" =>                     [""]
+//	"lowercase" =>            ["lowercase"]
+//	"Class" =>                ["Class"]
+//	"MyClass" =>              ["My", "Class"]
+//	"MyC" =>                  ["My", "C"]
+//	"HTML" =>                 ["HTML"]
+//	"PDFLoader" =>            ["PDF", "Loader"]
+//	"AString" =>              ["A", "String"]
+//	"SimpleXMLParser" =>      ["Simple", "XML", "Parser"]
+//	"vimRPCPlugin" =>         ["vim", "RPC", "Plugin"]
+//	"GL11Version" =>          ["GL", "11", "Version"]
+//	"99Bottles" =>            ["99", "Bottles"]
+//	"May5" =>                 ["May", "5"]
+//	"BFG9000" =>              ["BFG", "9000"]
+//	"BöseÜberraschung" =>     ["Böse", "Überraschung"]
+//	"Two  spaces" =>          ["Two", "  ", "spaces"]
+//	"BadUTF8\xe2\xe2\xa1" =>  ["BadUTF8\xe2\xe2\xa1"]
 //
 // Splitting rules
 //
-//  1) If string is not valid UTF-8, return it without splitting as
+//  1. If string is not valid UTF-8, return it without splitting as
 //     single item array.
-//  2) Assign all unicode characters into one of 4 sets: lower case
+//  2. Assign all unicode characters into one of 4 sets: lower case
 //     letters, upper case letters, numbers, and all other characters.
-//  3) Iterate through characters of string, introducing splits
+//  3. Iterate through characters of string, introducing splits
 //     between adjacent characters that belong to different sets.
-//  4) Iterate through array of split strings, and if a given string
+//  4. Iterate through array of split strings, and if a given string
 //     is upper case:
-//       if subsequent string is lower case:
-//         move last character of upper case string to beginning of
-//         lower case string
+//     if subsequent string is lower case:
+//     move last character of upper case string to beginning of
+//     lower case string
 func split(src string) (entries []string) {
 	// don't split invalid utf8
 	if !utf8.ValidString(src) {

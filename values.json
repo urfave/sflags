@@ -803,7 +803,7 @@
       {
         "in": "3l",
         "out": "0s",
-        "err": "time: unknown unit l in duration 3l"
+        "err": "time: unknown unit \\\"l\\\" in duration \\\"3l\\\""
       }
     ],
     "slice_tests": [
@@ -819,7 +819,7 @@
           "1s,3l"
         ],
         "out": "[]",
-        "err": "time: unknown unit l in duration 3l"
+        "err": "time: unknown unit \\\"l\\\" in duration \\\"3l\\\""
       }
     ],
     "map_tests": [
@@ -833,7 +833,7 @@
         "in": [
           "3l"
         ],
-        "err": "time: unknown unit l in duration 3l"
+        "err": "time: unknown unit \\\"l\\\" in duration \\\"3l\\\""
       }
     ]
   },

@@ -2,7 +2,7 @@ package gpflag
 
 import (
 	"errors"
-	"io/ioutil"
+	"io"
 	"net"
 	"os"
 	"testing"
@@ -130,7 +130,7 @@ func TestParse(t *testing.T) {
 				return
 			}
 			fs.Init("pflagTest", pflag.ContinueOnError)
-			fs.SetOutput(ioutil.Discard)
+			fs.SetOutput(io.Discard)
 			err = fs.Parse(test.args)
 			if test.expErr2 != nil {
 				require.Error(t, err)
