@@ -30,7 +30,7 @@ And you can use your favorite flag or cli library!
 | <ul><li>[x] [spf13/pflag]</li></ul> | [example](./examples/pflag/main.go) | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> | `-` |
 | <ul><li>[x] [spf13/cobra]</li></ul> | [example](./examples/cobra/main.go) | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> | `-` |
 | <ul><li>[ ] [spf13/viper]</li><ul> |   | <ul><li>[ ] </li></ul> | <ul><li>[ ] </li></ul> | <ul><li>[ ] </li></ul> | <ul><li>[ ] </li></ul> |
-| <ul><li>[x] [urfave/cli]</li></ul> | [example](./example/urfave_cli/main.go) | <ul><li>[x] </li></ul> | `-` | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
+| <ul><li>[x] [urfave/cli]</li></ul> | [example](./examples/urfave_cli/main.go) | <ul><li>[x] </li></ul> | `-` | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
 
 - [x] - feature is supported and implemented
 
