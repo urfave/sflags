@@ -133,8 +133,8 @@ func main() {
 ```
 
 That code generates next output:
-```
-go run ./main.go --help
+```sh
+$ go run ./main.go --help
 Usage of _obj/exe/main:
   -http-host value
     	HTTP host (default 127.0.0.1)
@@ -151,7 +151,7 @@ exit status 2
 
 The flag default key string is the struct field name but can be specified in the struct field's tag value.
 The "flag" key in the struct field's tag value is the key name, followed by an optional comma and options. Examples:
-```
+```golang
 // Field is ignored by this package.
 Field int `flag:"-"`
 
@@ -175,9 +175,9 @@ Field int `flag:",deprecated"`
 ## Options for desc tag
 If you specify description in description tag (`desc` by default) it will be used in USAGE section.
 
-```
+```golang
 Addr string `desc:"HTTP host"`
-```
+```sh
 this description produces something like:
 ```
   -addr value
@@ -189,7 +189,7 @@ this description produces something like:
 
 ## Options for Parse function:
 
-```
+```golang
 // DescTag sets custom description tag. It is "desc" by default.
 func DescTag(val string)
 
@@ -226,3 +226,4 @@ func Flatten(val bool)
 
  * https://github.com/jaffee/commandeer
  * https://github.com/anacrolix/tagflag
+ * https://github.com/jessevdk/go-flags
