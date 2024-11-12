@@ -1,4 +1,4 @@
-# Flags based on structures. [![GoDoc](https://godoc.org/github.com/octago/sflags?status.svg)](http://godoc.org/github.com/octago/sflags) [![Build Status](https://travis-ci.org/octago/sflags.svg?branch=master)](https://travis-ci.org/octago/sflags)  [![codecov](https://codecov.io/gh/octago/sflags/branch/master/graph/badge.svg)](https://codecov.io/gh/octago/sflags)  [![Go Report Card](https://goreportcard.com/badge/github.com/octago/sflags)](https://goreportcard.com/report/github.com/octago/sflags)
+# Flags based on structures [![GoDoc](https://godoc.org/github.com/octago/sflags?status.svg)](http://godoc.org/github.com/octago/sflags) [![Build Status](https://travis-ci.org/octago/sflags.svg?branch=master)](https://travis-ci.org/octago/sflags)  [![codecov](https://codecov.io/gh/octago/sflags/branch/master/graph/badge.svg)](https://codecov.io/gh/octago/sflags)  [![Go Report Card](https://goreportcard.com/badge/github.com/octago/sflags)](https://goreportcard.com/report/github.com/octago/sflags)
 
 The sflags package uses structs, reflection and struct field tags
 to allow you specify command line options. It supports [different types](#supported-types-in-structures) and [features](#features).
@@ -21,16 +21,21 @@ type Config struct {
 
 And you can use your favorite flag or cli library!
 
-## Supported flags and cli libraries:
+## Supported libraries and features:
 
-|     |     |
-| --- | --- |
-| <ul><li>[x] [flag]</li><ul> | [example](./examples/flag/main.go) |
-| <ul><li>[x] [spf13/pflag]</li></ul> | [example](./examples/pflag/main.go) |
-| <ul><li>[x] [spf13/cobra]</li></ul> | [example](./examples/cobra/main.go) |
-| <ul><li>[ ] [spf13/viper]</li><ul> |   |
-| <ul><li>[x] [urfave/cli]</li></ul> | [example](./example/urfave_cli/main.go) |
-| <ul><li>[x] [kingpin]</li></ul> | [example](./examples/kingpin/main.go) |
+|     |     | Hidden | Deprecated | Short | Env |
+| --- | --- | ------ | ---------- |------ | --- |
+| <ul><li>[x] [flag]</li><ul> | [example](./examples/flag/main.go) | `-` | `-` | `-` | `-` |
+| <ul><li>[x] [spf13/pflag]</li></ul> | [example](./examples/pflag/main.go) | [x] | [x] | [x] | `-` |
+| <ul><li>[x] [spf13/cobra]</li></ul> | [example](./examples/cobra/main.go) | [x] | [x] | [x] | `-` |
+| <ul><li>[ ] [spf13/viper]</li><ul> |   | [ ] | [ ] | [ ] | [ ] |
+| <ul><li>[x] [urfave/cli]</li></ul> | [example](./example/urfave_cli/main.go) | [x] | `-` | [x] | [x] |
+| <ul><li>[x] [kingpin]</li></ul> | [example](./examples/kingpin/main.go) | [x] | [ ] | [x] | [x] |
+
+- [x] - feature is supported and implemented
+
+`-` - feature can't be implemented for this cli library
+
 
 [flag]: https://golang.org/pkg/flag/
 [spf13/pflag]: https://github.com/spf13/pflag
@@ -83,22 +88,10 @@ And you can use your favorite flag or cli library!
  - [ ] url list
  - [ ] units (bytes 1kb = 1024b, speed, etc)
 
-## Supported features matrix:
+## Example:
 
-| Name | Hidden | Deprecated | Short | Env |
-| --- | --- | --- | --- | --- |
-| flag | - | - | - | - |
-| pflag | [x] | [x] | [x] | - |
-| kingpin | [x] | [ ] | [x] | [x] |
-| urfave | [x] | - | [x] | [x] |
-| cobra | [x] | [x] | [x] | - |
-| viper | [ ] | [ ] | [ ] | [ ] |
-
-  \[x] - feature is supported and implemented
-  
-  `-` - feature can't be implemented for this cli library
-
-Simple example for flag library:
+The code below shows how to use `sflags` with the [flag] library. Examples for other
+flag libraries are available from [./examples](./examples) dir.
 
 ```golang
 package main
@@ -153,8 +146,6 @@ Usage of _obj/exe/main:
     	 (default 15s)
 exit status 2
 ```
-
-Look at the other [examples](https://github.com/octago/sflags/blob/master/examples) for different flag libraries.
 
 ## Options for flag tag
 
