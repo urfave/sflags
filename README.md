@@ -23,12 +23,14 @@ And you can use your favorite flag or cli library!
 
 ## Supported flags and cli libraries:
 
- - [x] [flag] - [example](./examples/flag/main.go)
- - [x] [spf13/pflag] - [example](./examples/pflag/main.go)
- - [x] [spf13/cobra] - [example](.examples/cobra/main.go)
- - [ ] [spf13/viper]
- - [x] [urfave/cli] - [example](./urfave_cli/main.go)
- - [x] [kingpin] - [example](./examples/kingpin/main.go)
+|     |     |
+| --- | --- |
+| <ul><li>[x] [flag]</li><ul> | [example](./examples/flag/main.go) |
+| <ul><li>[x] [spf13/pflag]</li></ul> | [example](./examples/pflag/main.go) |
+| <ul><li>[x] [spf13/cobra]</li></ul> | [example](./examples/cobra/main.go) |
+| <ul><li>[ ] [spf13/viper]</li><ul> |   |
+| <ul><li>[x] [urfave/cli]</li></ul> | [example](./example/urfave_cli/main.go) |
+| <ul><li>[x] [kingpin]</li></ul> | [example](./examples/kingpin/main.go) |
 
 [flag]: https://golang.org/pkg/flag/
 [spf13/pflag]: https://github.com/spf13/pflag
