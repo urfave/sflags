@@ -7,9 +7,9 @@ import (
 	"log"
 	"testing"
 
-	"github.com/octago/sflags"
-	"github.com/octago/sflags/gen/gflag"
 	"github.com/stretchr/testify/assert"
+	"github.com/urfave/sflags"
+	"github.com/urfave/sflags/gen/gflag"
 )
 
 func ExampleNew() {

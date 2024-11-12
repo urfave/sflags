@@ -11,9 +11,9 @@ import (
 	"time"
 
 	"github.com/davecgh/go-spew/spew"
-	"github.com/octago/sflags"
-	"github.com/octago/sflags/gen/gpflag"
 	"github.com/spf13/cobra"
+	"github.com/urfave/sflags"
+	"github.com/urfave/sflags/gen/gpflag"
 )
 
 type httpConfig struct {

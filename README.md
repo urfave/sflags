@@ -1,4 +1,4 @@
-# Flags based on structures [![GoDoc](https://godoc.org/github.com/octago/sflags?status.svg)](http://godoc.org/github.com/octago/sflags) [![Build Status](https://travis-ci.org/octago/sflags.svg?branch=master)](https://travis-ci.org/octago/sflags)  [![codecov](https://codecov.io/gh/octago/sflags/branch/master/graph/badge.svg)](https://codecov.io/gh/octago/sflags)  [![Go Report Card](https://goreportcard.com/badge/github.com/octago/sflags)](https://goreportcard.com/report/github.com/octago/sflags)
+# Flags based on structures [![GoDoc](https://godoc.org/github.com/urfave/sflags?status.svg)](http://godoc.org/github.com/urfave/sflags) [![Build Status](https://travis-ci.org/urfave/sflags.svg?branch=master)](https://travis-ci.org/urfave/sflags)  [![codecov](https://codecov.io/gh/urfave/sflags/branch/master/graph/badge.svg)](https://codecov.io/gh/urfave/sflags)  [![Go Report Card](https://goreportcard.com/badge/github.com/urfave/sflags)](https://goreportcard.com/report/github.com/urfave/sflags)
 
 The sflags package uses structs, reflection and struct field tags
 to allow you specify command line options. It supports [different types](#supported-types-in-structures) and [features](#features).
@@ -55,7 +55,7 @@ And you can use your favorite flag or cli library!
  - [x] Deprecated and hidden options
  - [ ] Multiple ENV names
  - [x] Interface for user types.
- - [x] [Validation](https://godoc.org/github.com/octago/sflags/validator/govalidator#New) (using [govalidator](https://github.com/asaskevich/govalidator) package)
+ - [x] [Validation](https://godoc.org/github.com/urfave/sflags/validator/govalidator#New) (using [govalidator](https://github.com/asaskevich/govalidator) package)
  - [x] Anonymous nested structure support (anonymous structures flatten by default)
 
 ## Supported types in structures:
@@ -101,7 +101,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/octago/sflags/gen/gflag"
+	"github.com/urfave/sflags/gen/gflag"
 )
 
 type httpConfig struct {

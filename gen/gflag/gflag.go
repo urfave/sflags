@@ -4,7 +4,7 @@ import (
 	"flag"
 	"os"
 
-	"github.com/octago/sflags"
+	"github.com/urfave/sflags"
 )
 
 // flagSet describes interface,

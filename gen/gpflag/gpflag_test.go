@@ -8,10 +8,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/octago/sflags"
 	"github.com/spf13/pflag"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"github.com/urfave/sflags"
 )
 
 type cfg1 struct {
