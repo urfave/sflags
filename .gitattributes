@@ -1,0 +1,2 @@
+# Ensure Windows uses proper line endings
+*.go text eol=lf
