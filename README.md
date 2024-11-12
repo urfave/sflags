@@ -26,11 +26,11 @@ And you can use your favorite flag or cli library!
 |     |     | Hidden | Deprecated | Short | Env |
 | --- | --- | ------ | ---------- |------ | --- |
 | <ul><li>[x] [flag]</li><ul> | [example](./examples/flag/main.go) | `-` | `-` | `-` | `-` |
+| <ul><li>[x] [kingpin]</li></ul> | [example](./examples/kingpin/main.go) | <ul><li>[x] </li></ul> | <ul><li>[ ] </li></ul> | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
 | <ul><li>[x] [spf13/pflag]</li></ul> | [example](./examples/pflag/main.go) | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> | `-` |
 | <ul><li>[x] [spf13/cobra]</li></ul> | [example](./examples/cobra/main.go) | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> | `-` |
 | <ul><li>[ ] [spf13/viper]</li><ul> |   | <ul><li>[ ] </li></ul> | <ul><li>[ ] </li></ul> | <ul><li>[ ] </li></ul> | <ul><li>[ ] </li></ul> |
 | <ul><li>[x] [urfave/cli]</li></ul> | [example](./example/urfave_cli/main.go) | <ul><li>[x] </li></ul> | `-` | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
-| <ul><li>[x] [kingpin]</li></ul> | [example](./examples/kingpin/main.go) | <ul><li>[x] </li></ul> | <ul><li>[ ] </li></ul> | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
 
 - [x] - feature is supported and implemented
 
