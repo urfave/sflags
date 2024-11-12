@@ -3,8 +3,8 @@ package gpflag
 import (
 	"os"
 
-	"github.com/octago/sflags"
 	"github.com/spf13/pflag"
+	"github.com/urfave/sflags"
 )
 
 // flagSet describes interface,

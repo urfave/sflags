@@ -1,4 +1,4 @@
-module github.com/octago/sflags
+module github.com/urfave/sflags
 
 go 1.21.5
 
