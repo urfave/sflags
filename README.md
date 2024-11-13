@@ -24,7 +24,7 @@ And you can use your favorite flag or cli library!
 ## Supported libraries and features:
 
 |     |     | Hidden | Deprecated | Short | Env | Required |
-| --- | --- |:------:|:----------:|:-----:|:---:|
+| --- | --- |:------:|:----------:|:-----:|:---:|:--------:|
 | <ul><li>[x] [flag]</li><ul> | [example](./examples/flag/main.go) | `-` | `-` | `-` | `-` | `-` |
 | <ul><li>[x] [kingpin]</li></ul> | [example](./examples/kingpin/main.go) | <ul><li>[x] </li></ul> | <ul><li>[ ] </li></ul> | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
 | <ul><li>[x] [spf13/pflag]</li></ul> | [example](./examples/pflag/main.go) | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> | `-` | `-` |
