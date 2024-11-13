@@ -114,7 +114,7 @@ func parseFlagTag(field reflect.StructField, opt opts) *Flag {
 		}
 		flag.Hidden = hasOption(flagTags[1:], "hidden")
 		flag.Deprecated = hasOption(flagTags[1:], "deprecated")
-
+		flag.Required = hasOption(flagTags[1:], "required")
 	}
 
 	if opt.prefix != "" && !ignoreFlagPrefix {

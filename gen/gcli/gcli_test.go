@@ -2,7 +2,9 @@ package gcli
 
 import (
 	"errors"
+	"fmt"
 	"io"
+	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -14,6 +16,7 @@ import (
 type cfg1 struct {
 	StringValue1 string
 	StringValue2 string `flag:"string-value-two s"`
+	StringValue3 string `flag:",required"`
 
 	CounterValue1 sflags.Counter
 
@@ -35,6 +38,7 @@ func TestParse(t *testing.T) {
 			cfg: &cfg1{
 				StringValue1: "string_value1_value",
 				StringValue2: "string_value2_value",
+				StringValue3: "string_value3_value",
 
 				CounterValue1: 1,
 
@@ -43,6 +47,7 @@ func TestParse(t *testing.T) {
 			expCfg: &cfg1{
 				StringValue1: "string_value1_value2",
 				StringValue2: "string_value2_value2",
+				StringValue3: "string_value3_value2",
 
 				CounterValue1: 3,
 
@@ -52,6 +57,7 @@ func TestParse(t *testing.T) {
 			args: []string{
 				"--string-value1", "string_value1_value2",
 				"--string-value-two", "string_value2_value2",
+				"--string-value3", "string_value3_value2",
 				"--counter-value1", "--counter-value1",
 				"--string-slice-value1", "one2",
 				"--string-slice-value1", "two2",
@@ -68,7 +74,8 @@ func TestParse(t *testing.T) {
 				StringValue1: "string_value1_value",
 				StringValue2: "",
 			},
-			args: []string{},
+			args:    []string{},
+			expErr2: fmt.Errorf("required flag \"string-value3\" not set"),
 		},
 		{
 			name: "Test cfg1 short option",
@@ -77,8 +84,10 @@ func TestParse(t *testing.T) {
 			},
 			expCfg: &cfg1{
 				StringValue2: "string_value2_value2",
+				StringValue3: "string_value3_value2",
 			},
 			args: []string{
+				"--string-value3", "string_value3_value2",
 				"-s=string_value2_value2",
 			},
 		},
@@ -88,12 +97,14 @@ func TestParse(t *testing.T) {
 			expCfg: &cfg1{
 				StringValue1: "string_value1_value2",
 				StringValue2: "string_value2_value2",
+				StringValue3: "string_value3_value2",
 
 				CounterValue1: 3,
 			},
 			args: []string{
 				"--string-value1", "string_value1_value2",
 				"--string-value-two", "string_value2_value2",
+				"--string-value3", "string_value3_value2",
 				"--counter-value1=2", "--counter-value1",
 			},
 		},
@@ -142,7 +153,7 @@ func TestParse(t *testing.T) {
 			err = cliApp.Run(args)
 			if test.expErr2 != nil {
 				require.Error(t, err)
-				require.Equal(t, test.expErr2, err)
+				require.Equal(t, test.expErr2.Error(), strings.ToLower(err.Error()))
 			} else {
 				require.NoError(t, err)
 			}

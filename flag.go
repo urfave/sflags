@@ -11,4 +11,5 @@ type Flag struct {
 	DefValue   string // default value (as text); for usage message
 	Hidden     bool
 	Deprecated bool
+	Required   bool
 }
