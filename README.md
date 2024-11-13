@@ -49,7 +49,7 @@ And you can use your favorite flag or cli library!
  - [x] Set usage
  - [x] Long and short forms
  - [x] Skip field
- - [ ] Required
+ - [x] Required
  - [ ] Placeholders (by `name`)
  - [x] Deprecated and hidden options
  - [ ] Multiple ENV names
