@@ -27,6 +27,7 @@ func TestParseStruct(t *testing.T) {
 		Name4 *string
 		Name5 string `flag:"-"`
 		name6 string
+		Name7 int `flag:",required"`
 
 		Addr *net.TCPAddr
 
@@ -148,6 +149,13 @@ func TestParseStruct(t *testing.T) {
 					Value:    newStringValue(simpleCfg.Name4),
 				},
 				{
+					Name:     "name7",
+					EnvName:  "NAME7",
+					Required: true,
+					DefValue: "0",
+					Value:    newIntValue(&simpleCfg.Name7),
+				},
+				{
 					Name:     "addr",
 					EnvName:  "ADDR",
 					DefValue: "127.0.0.1:0",
@@ -193,6 +201,13 @@ func TestParseStruct(t *testing.T) {
 					EnvName:  "PP|NAME4",
 					DefValue: "name_value4",
 					Value:    newStringValue(simpleCfg.Name4),
+				},
+				{
+					Name:     "name7",
+					EnvName:  "PP|NAME7",
+					Required: true,
+					DefValue: "0",
+					Value:    newIntValue(&simpleCfg.Name7),
 				},
 				{
 					Name:     "addr",

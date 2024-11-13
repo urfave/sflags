@@ -23,6 +23,9 @@ func GenerateTo(src []*sflags.Flag, dst flagger) {
 		if srcFlag.Hidden {
 			flag.Hidden()
 		}
+		if srcFlag.Required {
+			flag.Required()
+		}
 		if srcFlag.Short != "" {
 			r, _ := utf8.DecodeRuneInString(srcFlag.Short)
 			if r != utf8.RuneError {

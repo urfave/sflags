@@ -11,7 +11,7 @@ import (
 )
 
 type cfg1 struct {
-	StringValue1 string
+	StringValue1 string `flag:",required"`
 	StringValue2 string `flag:"string-value-two s"`
 
 	CounterValue1 sflags.Counter
@@ -67,7 +67,8 @@ func TestParse(t *testing.T) {
 				StringValue1: "string_value1_value",
 				StringValue2: "",
 			},
-			args: []string{},
+			args:    []string{},
+			expErr2: errors.New("required flag(s) '--string-value1' not provided"),
 		},
 		{
 			name: "Test cfg1 short option",
@@ -75,10 +76,12 @@ func TestParse(t *testing.T) {
 				StringValue2: "string_value2_value",
 			},
 			expCfg: &cfg1{
+				StringValue1: "string_value1_value2",
 				StringValue2: "string_value2_value2",
 			},
 			args: []string{
 				"-s", "string_value2_value2",
+				"--string-value1", "string_value1_value2",
 			},
 		},
 		{

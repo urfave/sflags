@@ -48,6 +48,7 @@ func GenerateToV3(src []*sflags.Flag, dst *[]cli.Flag) {
 			Value: &value{
 				v: srcFlag.Value,
 			},
+			Required: srcFlag.Required,
 		})
 	}
 }

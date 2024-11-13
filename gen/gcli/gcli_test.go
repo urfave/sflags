@@ -3,6 +3,7 @@ package gcli
 import (
 	"errors"
 	"io"
+	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -12,7 +13,7 @@ import (
 )
 
 type cfg1 struct {
-	StringValue1 string
+	StringValue1 string `flag:",required"`
 	StringValue2 string `flag:"string-value-two s"`
 
 	CounterValue1 sflags.Counter
@@ -68,7 +69,8 @@ func TestParse(t *testing.T) {
 				StringValue1: "string_value1_value",
 				StringValue2: "",
 			},
-			args: []string{},
+			args:    []string{},
+			expErr2: errors.New("required flag \"string-value1\" not set"),
 		},
 		{
 			name: "Test cfg1 short option",
@@ -76,10 +78,12 @@ func TestParse(t *testing.T) {
 				StringValue2: "string_value2_value",
 			},
 			expCfg: &cfg1{
+				StringValue1: "string_value1_value2",
 				StringValue2: "string_value2_value2",
 			},
 			args: []string{
 				"-s=string_value2_value2",
+				"--string-value1", "string_value1_value2",
 			},
 		},
 		{
@@ -142,7 +146,7 @@ func TestParse(t *testing.T) {
 			err = cliApp.Run(args)
 			if test.expErr2 != nil {
 				require.Error(t, err)
-				require.Equal(t, test.expErr2, err)
+				require.Equal(t, test.expErr2.Error(), strings.ToLower(err.Error()))
 			} else {
 				require.NoError(t, err)
 			}
