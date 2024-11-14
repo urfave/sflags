@@ -123,37 +123,47 @@ func parseFlagTag(field reflect.StructField, opt opts) *Flag {
 	return &flag
 }
 
-func parseEnv(flagName string, field reflect.StructField, opt opts) string {
-	ignoreEnvPrefix := false
-	envVar := flagToEnv(flagName, opt.flagDivider, opt.envDivider)
+func parseEnv(flagName string, field reflect.StructField, opt opts) []string {
+	var envVars []string
+	flagEnvVar := flagToEnv(flagName, opt.flagDivider, opt.envDivider)
 	if envTags := strings.Split(field.Tag.Get(defaultEnvTag), ","); len(envTags) > 0 {
 		switch envName := envTags[0]; envName {
 		case "-":
-			// if tag is `env:"-"` then won't fill flag from environment
-			envVar = ""
+			return envVars
 		case "":
 			// if tag is `env:""` then env var will be taken from flag name
+			envVars = append(envVars, opt.envPrefix+flagEnvVar)
 		default:
 			// if tag is `env:"NAME"` then env var is envPrefix_flagPrefix_NAME
 			// if tag is `env:"~NAME"` then env var is NAME
-			if strings.HasPrefix(envName, "~") {
-				envVar = envName[1:]
-				ignoreEnvPrefix = true
-			} else {
-				envVar = envName
-				if opt.prefix != "" {
-					envVar = flagToEnv(
-						opt.prefix,
-						opt.flagDivider,
-						opt.envDivider) + envVar
+			for _, envName := range envTags {
+				ignoreEnvPrefix := false
+				var envVar string
+				if strings.HasPrefix(envName, "~") {
+					envVar = envName[1:]
+					ignoreEnvPrefix = true
+				} else {
+					envVar = envName
+					if opt.prefix != "" {
+						envVar = flagToEnv(
+							opt.prefix,
+							opt.flagDivider,
+							opt.envDivider) + envVar
+					}
+				}
+				if envVar != "" {
+					if !ignoreEnvPrefix {
+						envVars = append(envVars, opt.envPrefix+envVar)
+					} else {
+						envVars = append(envVars, envVar)
+					}
 				}
 			}
 		}
+	} else if flagEnvVar != "" {
+		envVars = append(envVars, opt.envPrefix+flagEnvVar)
 	}
-	if envVar != "" && opt.envPrefix != "" && !ignoreEnvPrefix {
-		envVar = opt.envPrefix + envVar
-	}
-	return envVar
+	return envVars
 }
 
 // ParseStruct parses structure and returns list of flags based on this structure.
@@ -247,7 +257,7 @@ fields:
 			continue fields
 		}
 
-		flag.EnvName = parseEnv(flag.Name, field, opt)
+		flag.EnvNames = parseEnv(flag.Name, field, opt)
 		flag.Usage = field.Tag.Get(opt.descTag)
 		prefix := flag.Name + opt.flagDivider
 		if field.Anonymous && opt.flatten {
