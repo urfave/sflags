@@ -17,8 +17,8 @@ func GenerateTo(src []*sflags.Flag, dst flagger) {
 	for _, srcFlag := range src {
 		flag := dst.Flag(srcFlag.Name, srcFlag.Usage)
 		flag.SetValue(srcFlag.Value)
-		if srcFlag.EnvName != "" {
-			flag.Envar(srcFlag.EnvName)
+		if len(srcFlag.EnvNames) > 0 && srcFlag.EnvNames[0] != "" {
+			flag.Envar(srcFlag.EnvNames[0])
 		}
 		if srcFlag.Hidden {
 			flag.Hidden()

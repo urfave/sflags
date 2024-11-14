@@ -41,7 +41,7 @@ func GenerateToV3(src []*sflags.Flag, dst *[]cli.Flag) {
 		}
 		*dst = append(*dst, &cli.GenericFlag{
 			Name:    name,
-			Sources: cli.EnvVars(srcFlag.EnvName),
+			Sources: cli.EnvVars(srcFlag.EnvNames...),
 			Aliases: aliases,
 			Hidden:  srcFlag.Hidden,
 			Usage:   srcFlag.Usage,

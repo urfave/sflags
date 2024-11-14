@@ -52,7 +52,7 @@ And you can use your favorite flag or cli library!
  - [x] Required
  - [ ] Placeholders (by `name`)
  - [x] Deprecated and hidden options
- - [ ] Multiple ENV names
+ - [x] Multiple ENV names
  - [x] Interface for user types.
  - [x] [Validation](https://godoc.org/github.com/urfave/sflags/validator/govalidator#New) (using [govalidator](https://github.com/asaskevich/govalidator) package)
  - [x] Anonymous nested structure support (anonymous structures flatten by default)

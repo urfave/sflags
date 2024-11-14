@@ -27,7 +27,8 @@ func TestParseStruct(t *testing.T) {
 		Name4 *string
 		Name5 string `flag:"-"`
 		name6 string
-		Name7 int `flag:",required"`
+		Name7 int     `flag:",required"`
+		Name8 float64 `flag:"name_8" env:"NAME_8,~nn_8"`
 
 		Addr *net.TCPAddr
 
@@ -122,7 +123,7 @@ func TestParseStruct(t *testing.T) {
 			expFlagSet: []*Flag{
 				{
 					Name:     "name",
-					EnvName:  "",
+					EnvNames: nil,
 					DefValue: "name_value",
 					Value:    newStringValue(&simpleCfg.Name),
 					Usage:    "name description",
@@ -130,7 +131,7 @@ func TestParseStruct(t *testing.T) {
 				{
 					Name:       "name_two",
 					Short:      "t",
-					EnvName:    "NAME_TWO",
+					EnvNames:   []string{"NAME_TWO"},
 					DefValue:   "name2_value",
 					Value:      newStringValue(&simpleCfg.Name2),
 					Hidden:     true,
@@ -138,32 +139,38 @@ func TestParseStruct(t *testing.T) {
 				},
 				{
 					Name:     "name3",
-					EnvName:  "NAME_THREE",
+					EnvNames: []string{"NAME_THREE"},
 					DefValue: "",
 					Value:    newStringValue(&simpleCfg.Name3),
 				},
 				{
 					Name:     "name4",
-					EnvName:  "NAME4",
+					EnvNames: []string{"NAME4"},
 					DefValue: "name_value4",
 					Value:    newStringValue(simpleCfg.Name4),
 				},
 				{
 					Name:     "name7",
-					EnvName:  "NAME7",
+					EnvNames: []string{"NAME7"},
 					Required: true,
 					DefValue: "0",
 					Value:    newIntValue(&simpleCfg.Name7),
 				},
 				{
+					Name:     "name_8",
+					EnvNames: []string{"NAME_8", "nn_8"},
+					DefValue: "0",
+					Value:    newFloat64Value(&simpleCfg.Name8),
+				},
+				{
 					Name:     "addr",
-					EnvName:  "ADDR",
+					EnvNames: []string{"ADDR"},
 					DefValue: "127.0.0.1:0",
 					Value:    newTCPAddrValue(simpleCfg.Addr),
 				},
 				{
 					Name:     "map",
-					EnvName:  "MAP",
+					EnvNames: []string{"MAP"},
 					DefValue: "map[test:15]",
 					Value:    newStringIntMapValue(&simpleCfg.Map),
 				},
@@ -176,7 +183,7 @@ func TestParseStruct(t *testing.T) {
 			expFlagSet: []*Flag{
 				{
 					Name:     "name",
-					EnvName:  "",
+					EnvNames: nil,
 					DefValue: "name_value",
 					Value:    newStringValue(&simpleCfg.Name),
 					Usage:    "name description",
@@ -184,7 +191,7 @@ func TestParseStruct(t *testing.T) {
 				{
 					Name:       "name_two",
 					Short:      "t",
-					EnvName:    "PP|NAME_TWO",
+					EnvNames:   []string{"PP|NAME_TWO"},
 					DefValue:   "name2_value",
 					Value:      newStringValue(&simpleCfg.Name2),
 					Hidden:     true,
@@ -192,32 +199,38 @@ func TestParseStruct(t *testing.T) {
 				},
 				{
 					Name:     "name3",
-					EnvName:  "PP|NAME_THREE",
+					EnvNames: []string{"PP|NAME_THREE"},
 					DefValue: "",
 					Value:    newStringValue(&simpleCfg.Name3),
 				},
 				{
 					Name:     "name4",
-					EnvName:  "PP|NAME4",
+					EnvNames: []string{"PP|NAME4"},
 					DefValue: "name_value4",
 					Value:    newStringValue(simpleCfg.Name4),
 				},
 				{
 					Name:     "name7",
-					EnvName:  "PP|NAME7",
+					EnvNames: []string{"PP|NAME7"},
 					Required: true,
 					DefValue: "0",
 					Value:    newIntValue(&simpleCfg.Name7),
 				},
 				{
+					Name:     "name_8",
+					EnvNames: []string{"PP|NAME_8", "nn_8"},
+					DefValue: "0",
+					Value:    newFloat64Value(&simpleCfg.Name8),
+				},
+				{
 					Name:     "addr",
-					EnvName:  "PP|ADDR",
+					EnvNames: []string{"PP|ADDR"},
 					DefValue: "127.0.0.1:0",
 					Value:    newTCPAddrValue(simpleCfg.Addr),
 				},
 				{
 					Name:     "map",
-					EnvName:  "PP|MAP",
+					EnvNames: []string{"PP|MAP"},
 					DefValue: "map[test:15]",
 					Value:    newStringIntMapValue(&simpleCfg.Map),
 				},
@@ -230,67 +243,67 @@ func TestParseStruct(t *testing.T) {
 			expFlagSet: []*Flag{
 				{
 					Name:     "string-value",
-					EnvName:  "STRING_VALUE",
+					EnvNames: []string{"STRING_VALUE"},
 					DefValue: "string",
 					Value:    newStringValue(&diffTypesCfg.StringValue),
 					Usage:    "",
 				},
 				{
 					Name:     "byte-value",
-					EnvName:  "BYTE_VALUE",
+					EnvNames: []string{"BYTE_VALUE"},
 					DefValue: "10",
 					Value:    newUint8Value(&diffTypesCfg.ByteValue),
 					Usage:    "",
 				},
 				{
 					Name:     "string-slice-value",
-					EnvName:  "STRING_SLICE_VALUE",
+					EnvNames: []string{"STRING_SLICE_VALUE"},
 					DefValue: "[]",
 					Value:    newStringSliceValue(&diffTypesCfg.StringSliceValue),
 					Usage:    "",
 				},
 				{
 					Name:     "bool-slice-value",
-					EnvName:  "BOOL_SLICE_VALUE",
+					EnvNames: []string{"BOOL_SLICE_VALUE"},
 					DefValue: "[]",
 					Value:    newBoolSliceValue(&diffTypesCfg.BoolSliceValue),
 					Usage:    "",
 				},
 				{
 					Name:     "counter-value",
-					EnvName:  "COUNTER_VALUE",
+					EnvNames: []string{"COUNTER_VALUE"},
 					DefValue: "10",
 					Value:    &diffTypesCfg.CounterValue,
 					Usage:    "",
 				},
 				{
 					Name:     "regexp-value",
-					EnvName:  "REGEXP_VALUE",
+					EnvNames: []string{"REGEXP_VALUE"},
 					DefValue: "",
 					Value:    newRegexpValue(&diffTypesCfg.RegexpValue),
 					Usage:    "",
 				},
 				{
 					Name:     "map-int8-bool",
-					EnvName:  "MAP_INT8_BOOL",
+					EnvNames: []string{"MAP_INT8_BOOL"},
 					DefValue: "",
 					Value:    newInt8BoolMapValue(&diffTypesCfg.MapInt8Bool),
 				},
 				{
 					Name:     "map-int16-int8",
-					EnvName:  "MAP_INT16_INT8",
+					EnvNames: []string{"MAP_INT16_INT8"},
 					DefValue: "",
 					Value:    newInt16Int8MapValue(&diffTypesCfg.MapInt16Int8),
 				},
 				{
 					Name:     "map-string-int64",
-					EnvName:  "MAP_STRING_INT64",
+					EnvNames: []string{"MAP_STRING_INT64"},
 					DefValue: "map[test:888]",
 					Value:    newStringInt64MapValue(&diffTypesCfg.MapStringInt64),
 				},
 				{
 					Name:     "map-string-string",
-					EnvName:  "MAP_STRING_STRING",
+					EnvNames: []string{"MAP_STRING_STRING"},
 					DefValue: "map[test:test-val]",
 					Value:    newStringStringMapValue(&diffTypesCfg.MapStringString),
 				},
@@ -302,32 +315,32 @@ func TestParseStruct(t *testing.T) {
 			expFlagSet: []*Flag{
 				{
 					Name:     "sub-name",
-					EnvName:  "SUB_NAME",
+					EnvNames: []string{"SUB_NAME"},
 					DefValue: "name_value",
 					Value:    newStringValue(&nestedCfg.Sub.Name),
 					Usage:    "name description",
 				},
 				{
 					Name:     "sub-name2",
-					EnvName:  "SUB_NAME_TWO",
+					EnvNames: []string{"SUB_NAME_TWO"},
 					DefValue: "name2_value",
 					Value:    newStringValue(&nestedCfg.Sub.Name2),
 				},
 				{
 					Name:     "name3",
-					EnvName:  "NAME_THREE",
+					EnvNames: []string{"NAME_THREE"},
 					DefValue: "",
 					Value:    newStringValue(&nestedCfg.Sub.Name3),
 				},
 				{
 					Name:     "sub-sub2-name4",
-					EnvName:  "SUB_SUB2_NAME4",
+					EnvNames: []string{"SUB_SUB2_NAME4"},
 					DefValue: "name4_value",
 					Value:    newStringValue(&nestedCfg.Sub.SUB2.Name4),
 				},
 				{
 					Name:     "sub-sub2-name5",
-					EnvName:  "SUB_SUB2_name_five",
+					EnvNames: []string{"SUB_SUB2_name_five"},
 					DefValue: "",
 					Value:    newStringValue(&nestedCfg.Sub.SUB2.Name5),
 				},
@@ -340,15 +353,15 @@ func TestParseStruct(t *testing.T) {
 			optFuncs: []OptFunc{DescTag("description")},
 			expFlagSet: []*Flag{
 				{
-					Name:    "name",
-					EnvName: "NAME",
-					Value:   newStringValue(&descCfg.Name),
+					Name:     "name",
+					EnvNames: []string{"NAME"},
+					Value:    newStringValue(&descCfg.Name),
 				},
 				{
-					Name:    "name2",
-					EnvName: "NAME2",
-					Value:   newStringValue(&descCfg.Name2),
-					Usage:   "name2 description",
+					Name:     "name2",
+					EnvNames: []string{"NAME2"},
+					Value:    newStringValue(&descCfg.Name2),
+					Usage:    "name2 description",
 				},
 			},
 		},
@@ -357,13 +370,13 @@ func TestParseStruct(t *testing.T) {
 			cfg:  anonymousCfg,
 			expFlagSet: []*Flag{
 				{
-					Name:    "name1",
-					EnvName: "NAME1",
-					Value:   newStringValue(&anonymousCfg.Name1),
+					Name:     "name1",
+					EnvNames: []string{"NAME1"},
+					Value:    newStringValue(&anonymousCfg.Name1),
 				},
 				{
 					Name:     "name",
-					EnvName:  "NAME",
+					EnvNames: []string{"NAME"},
 					DefValue: "name_value",
 					Value:    newStringValue(&anonymousCfg.Name),
 				},
@@ -375,13 +388,13 @@ func TestParseStruct(t *testing.T) {
 			optFuncs: []OptFunc{Flatten(false)},
 			expFlagSet: []*Flag{
 				{
-					Name:    "name1",
-					EnvName: "NAME1",
-					Value:   newStringValue(&anonymousCfg.Name1),
+					Name:     "name1",
+					EnvNames: []string{"NAME1"},
+					Value:    newStringValue(&anonymousCfg.Name1),
 				},
 				{
 					Name:     "simple-name",
-					EnvName:  "SIMPLE_NAME",
+					EnvNames: []string{"SIMPLE_NAME"},
 					DefValue: "name_value",
 					Value:    newStringValue(&anonymousCfg.Name),
 				},
