@@ -16,7 +16,7 @@ func GenerateTo(src []*sflags.Flag, dst *[]cli.Flag) {
 		}
 		*dst = append(*dst, &cli.GenericFlag{
 			Name:     name,
-			EnvVars:  []string{srcFlag.EnvName},
+			EnvVars:  srcFlag.EnvNames,
 			Aliases:  aliases,
 			Hidden:   srcFlag.Hidden,
 			Usage:    srcFlag.Usage,
