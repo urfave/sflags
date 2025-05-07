@@ -285,7 +285,7 @@ fields:
 			continue fields
 		}
 		// field is a structure
-		if len(nestedFlags) > 0 {
+		if len(nestedFlags) > 0 && ! flag.Hidden {
 			flags = append(flags, nestedFlags...)
 			continue fields
 		}

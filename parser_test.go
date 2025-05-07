@@ -96,6 +96,21 @@ func TestParseStruct(t *testing.T) {
 			},
 		},
 	}
+	hiddenNestedCfg := &struct {
+		Sub struct {
+			Name string
+		} `flag:",hidden"`
+		Sub2 struct {
+			Name string
+		}
+	}{
+		Sub: struct{ Name string }{
+			Name: "name_value",
+		},
+		Sub2: struct{ Name string }{
+			Name: "name_value",
+		},
+	}
 	descCfg := &struct {
 		Name  string `desc:"name description"`
 		Name2 string `description:"name2 description"`
@@ -346,6 +361,18 @@ func TestParseStruct(t *testing.T) {
 				},
 			},
 			expErr: nil,
+		},
+		{
+			name: "Hidden nested flags",
+			cfg:  hiddenNestedCfg,
+			expFlagSet: []*Flag{
+				{
+					Name:     "sub2-name",
+					EnvNames: []string{"SUB2_NAME"},
+					DefValue: "name_value",
+					Value:    newStringValue(&hiddenNestedCfg.Sub2.Name),
+				},
+			},
 		},
 		{
 			name:     "DescCfg with custom desc tag",
