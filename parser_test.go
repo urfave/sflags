@@ -111,6 +111,21 @@ func TestParseStruct(t *testing.T) {
 			Name: "name_value",
 		},
 	}
+	deprecatedNestedCfg := &struct {
+		Sub struct {
+			Name string
+		} `flag:",deprecated"`
+		Sub2 struct {
+			Name string
+		}
+	}{
+		Sub: struct{ Name string }{
+			Name: "name_value",
+		},
+		Sub2: struct{ Name string }{
+			Name: "name_value",
+		},
+	}
 	descCfg := &struct {
 		Name  string `desc:"name description"`
 		Name2 string `description:"name2 description"`
@@ -366,6 +381,32 @@ func TestParseStruct(t *testing.T) {
 			name: "Hidden nested flags",
 			cfg:  hiddenNestedCfg,
 			expFlagSet: []*Flag{
+				{
+					Name:     "sub-name",
+					EnvNames: []string{"SUB_NAME"},
+					DefValue: "name_value",
+					Value:    newStringValue(&hiddenNestedCfg.Sub2.Name),
+					Hidden:   true,
+				},
+				{
+					Name:     "sub2-name",
+					EnvNames: []string{"SUB2_NAME"},
+					DefValue: "name_value",
+					Value:    newStringValue(&hiddenNestedCfg.Sub2.Name),
+				},
+			},
+		},
+		{
+			name: "Deprecated nested flags",
+			cfg:  deprecatedNestedCfg,
+			expFlagSet: []*Flag{
+				{
+					Name:       "sub-name",
+					EnvNames:   []string{"SUB_NAME"},
+					DefValue:   "name_value",
+					Value:      newStringValue(&hiddenNestedCfg.Sub2.Name),
+					Deprecated: true,
+				},
 				{
 					Name:     "sub2-name",
 					EnvNames: []string{"SUB2_NAME"},

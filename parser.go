@@ -13,6 +13,8 @@ const (
 	defaultFlagDivider = "-"
 	defaultEnvDivider  = "_"
 	defaultFlatten     = true
+	defaultHidden      = false
+	defaultDeprecated  = false
 )
 
 // ValidateFunc describes a validation func,
@@ -30,6 +32,8 @@ type opts struct {
 	envDivider  string
 	flatten     bool
 	validator   ValidateFunc
+	hidden      bool
+	deprecated  bool
 }
 
 func (o opts) apply(optFuncs ...OptFunc) opts {
@@ -50,6 +54,16 @@ func FlagTag(val string) OptFunc { return func(opt *opts) { opt.flagTag = val } 
 
 // Prefix sets prefix that will be applied for all flags (if they are not marked as ~).
 func Prefix(val string) OptFunc { return func(opt *opts) { opt.prefix = val } }
+
+// Hidden sets the hidden flag for all flags
+func Hidden(val bool) OptFunc {
+	return func(opt *opts) { opt.hidden = val }
+}
+
+// Deprecated sets the deprecated flag for all flags
+func Deprecated(val bool) OptFunc {
+	return func(opt *opts) { opt.deprecated = val }
+}
 
 // EnvPrefix sets prefix that will be applied for all environment variables (if they are not marked as ~).
 func EnvPrefix(val string) OptFunc { return func(opt *opts) { opt.envPrefix = val } }
@@ -87,6 +101,8 @@ func defOpts() opts {
 		flagDivider: defaultFlagDivider,
 		envDivider:  defaultEnvDivider,
 		flatten:     defaultFlatten,
+		hidden:      defaultHidden,
+		deprecated:  defaultDeprecated,
 	}
 }
 
@@ -119,6 +135,13 @@ func parseFlagTag(field reflect.StructField, opt opts) *Flag {
 
 	if opt.prefix != "" && !ignoreFlagPrefix {
 		flag.Name = opt.prefix + flag.Name
+	}
+
+	if opt.deprecated {
+		flag.Deprecated = opt.deprecated
+	}
+	if opt.hidden {
+		flag.Hidden = opt.hidden
 	}
 	return &flag
 }
@@ -267,6 +290,8 @@ fields:
 		nestedFlags, val := parseVal(fieldValue,
 			copyOpts(opt),
 			Prefix(prefix),
+			Deprecated(flag.Deprecated),
+			Hidden(flag.Hidden),
 		)
 
 		// field contains a simple value.
@@ -285,7 +310,7 @@ fields:
 			continue fields
 		}
 		// field is a structure
-		if len(nestedFlags) > 0 && !flag.Hidden {
+		if len(nestedFlags) > 0 {
 			flags = append(flags, nestedFlags...)
 			continue fields
 		}
