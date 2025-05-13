@@ -7,12 +7,16 @@ import (
 )
 
 const (
-	defaultDescTag     = "desc"
-	defaultFlagTag     = "flag"
-	defaultEnvTag      = "env"
-	defaultFlagDivider = "-"
-	defaultEnvDivider  = "_"
-	defaultFlatten     = true
+	defaultDescTag           = "desc"
+	defaultFlagTag           = "flag"
+	defaultEnvTag            = "env"
+	defaultFlagDivider       = "-"
+	defaultEnvDivider        = "_"
+	defaultFlatten           = true
+	defaultInheritHidden     = false
+	defaultHidden            = false
+	defaultInheritDeprecated = false
+	defaultDeprecated        = false
 )
 
 // ValidateFunc describes a validation func,
@@ -22,14 +26,18 @@ const (
 type ValidateFunc func(val string, field reflect.StructField, cfg interface{}) error
 
 type opts struct {
-	descTag     string
-	flagTag     string
-	prefix      string
-	envPrefix   string
-	flagDivider string
-	envDivider  string
-	flatten     bool
-	validator   ValidateFunc
+	descTag           string
+	flagTag           string
+	prefix            string
+	envPrefix         string
+	flagDivider       string
+	envDivider        string
+	flatten           bool
+	validator         ValidateFunc
+	inheritHidden     bool
+	hidden            bool
+	inheritDeprecated bool
+	deprecated        bool
 }
 
 func (o opts) apply(optFuncs ...OptFunc) opts {
@@ -50,6 +58,22 @@ func FlagTag(val string) OptFunc { return func(opt *opts) { opt.flagTag = val } 
 
 // Prefix sets prefix that will be applied for all flags (if they are not marked as ~).
 func Prefix(val string) OptFunc { return func(opt *opts) { opt.prefix = val } }
+
+// InheritHidden enables inheriting the hidden flag for all nested flags if set for a parent flag
+func InheritHidden() OptFunc { return func(opt *opts) { opt.inheritHidden = true } }
+
+// hidden sets the hidden flag for all nested flags if set for a parent flag
+func hidden(val bool) OptFunc {
+	return func(opt *opts) { opt.hidden = val }
+}
+
+// InheritDeprecated enables inheriting the deprecated flag for all nested flags if set for a parent flag
+func InheritDeprecated() OptFunc { return func(opt *opts) { opt.inheritDeprecated = true } }
+
+// deprecated sets the deprecated flag for all nested flags if set for a parent flag
+func deprecated(val bool) OptFunc {
+	return func(opt *opts) { opt.deprecated = val }
+}
 
 // EnvPrefix sets prefix that will be applied for all environment variables (if they are not marked as ~).
 func EnvPrefix(val string) OptFunc { return func(opt *opts) { opt.envPrefix = val } }
@@ -82,11 +106,15 @@ func hasOption(options []string, option string) bool {
 
 func defOpts() opts {
 	return opts{
-		descTag:     defaultDescTag,
-		flagTag:     defaultFlagTag,
-		flagDivider: defaultFlagDivider,
-		envDivider:  defaultEnvDivider,
-		flatten:     defaultFlatten,
+		descTag:           defaultDescTag,
+		flagTag:           defaultFlagTag,
+		flagDivider:       defaultFlagDivider,
+		envDivider:        defaultEnvDivider,
+		flatten:           defaultFlatten,
+		inheritHidden:     defaultInheritHidden,
+		hidden:            defaultHidden,
+		inheritDeprecated: defaultInheritDeprecated,
+		deprecated:        defaultDeprecated,
 	}
 }
 
@@ -119,6 +147,13 @@ func parseFlagTag(field reflect.StructField, opt opts) *Flag {
 
 	if opt.prefix != "" && !ignoreFlagPrefix {
 		flag.Name = opt.prefix + flag.Name
+	}
+
+	if opt.deprecated {
+		flag.Deprecated = opt.deprecated
+	}
+	if opt.hidden {
+		flag.Hidden = opt.hidden
 	}
 	return &flag
 }
@@ -264,9 +299,16 @@ fields:
 			prefix = opt.prefix
 		}
 
+		nestedOpts := []OptFunc{copyOpts(opt), Prefix(prefix)}
+		if opt.inheritHidden {
+			nestedOpts = append(nestedOpts, hidden(flag.Hidden))
+		}
+		if opt.inheritDeprecated {
+			nestedOpts = append(nestedOpts, deprecated(flag.Deprecated))
+		}
+
 		nestedFlags, val := parseVal(fieldValue,
-			copyOpts(opt),
-			Prefix(prefix),
+			nestedOpts...,
 		)
 
 		// field contains a simple value.

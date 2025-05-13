@@ -176,15 +176,18 @@ If you specify description in description tag (`desc` by default) it will be use
 
 ```golang
 Addr string `desc:"HTTP host"`
+````
+This description produces something like:
 ```sh
-this description produces something like:
-```
   -addr value
     	HTTP host (default 127.0.0.1)
 ```
 
 ## Options for env tag
-
+If you specify environment variable name in `env` tag, it will be used to set the value of the field.
+```golang
+SSL     bool          `env:"HTTP_SSL_VALUE"`
+```
 
 ## Options for Parse function:
 
@@ -212,8 +215,14 @@ func EnvDivider(val string)
 // Check existed validators in sflags/validator package.
 func Validator(val ValidateFunc)
 
-// Set to false if you don't want anonymous structure fields to be flatten.
+// Set to false if you don't want anonymous structure fields to be flattened.
 func Flatten(val bool)
+
+// InheritHidden sets if fields should inherit the value of the hidden tag from parent structs.
+func InheritHidden()
+
+// InheritDeprecated sets if fields should inherit the value of the deprecated tag from parent structs.
+func InheritDeprecated()
 ```
 
 
