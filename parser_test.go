@@ -125,15 +125,26 @@ func TestParseStruct(t *testing.T) {
 	deprecatedNestedCfg := &struct {
 		Sub struct {
 			Name string
+			Sub2 struct {
+				Name string
+			}
 		} `flag:",deprecated"`
-		Sub2 struct {
+		Sub3 struct {
 			Name string
 		}
 	}{
-		Sub: struct{ Name string }{
+		Sub: struct {
+			Name string
+			Sub2 struct {
+				Name string
+			}
+		}{
 			Name: "name_value",
+			Sub2: struct{ Name string }{
+				Name: "other_value",
+			},
 		},
-		Sub2: struct{ Name string }{
+		Sub3: struct{ Name string }{
 			Name: "name_value",
 		},
 	}
@@ -428,10 +439,17 @@ func TestParseStruct(t *testing.T) {
 					Deprecated: true,
 				},
 				{
-					Name:     "sub2-name",
-					EnvNames: []string{"SUB2_NAME"},
+					Name:       "sub-sub2-name",
+					EnvNames:   []string{"SUB_SUB2_NAME"},
+					DefValue:   "other_value",
+					Value:      newStringValue(&deprecatedNestedCfg.Sub.Sub2.Name),
+					Deprecated: true,
+				},
+				{
+					Name:     "sub3-name",
+					EnvNames: []string{"SUB3_NAME"},
 					DefValue: "name_value",
-					Value:    newStringValue(&deprecatedNestedCfg.Sub2.Name),
+					Value:    newStringValue(&deprecatedNestedCfg.Sub3.Name),
 				},
 			},
 		},
