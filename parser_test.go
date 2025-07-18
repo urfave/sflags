@@ -96,6 +96,58 @@ func TestParseStruct(t *testing.T) {
 			},
 		},
 	}
+	hiddenNestedCfg := &struct {
+		Sub struct {
+			Name string
+			Sub2 struct {
+				Name string
+			}
+		} `flag:",hidden"`
+		Sub3 struct {
+			Name string
+		}
+	}{
+		Sub: struct {
+			Name string
+			Sub2 struct {
+				Name string
+			}
+		}{
+			Name: "name_value",
+			Sub2: struct{ Name string }{
+				Name: "other_value",
+			},
+		},
+		Sub3: struct{ Name string }{
+			Name: "name_value",
+		},
+	}
+	deprecatedNestedCfg := &struct {
+		Sub struct {
+			Name string
+			Sub2 struct {
+				Name string
+			}
+		} `flag:",deprecated"`
+		Sub3 struct {
+			Name string
+		}
+	}{
+		Sub: struct {
+			Name string
+			Sub2 struct {
+				Name string
+			}
+		}{
+			Name: "name_value",
+			Sub2: struct{ Name string }{
+				Name: "other_value",
+			},
+		},
+		Sub3: struct{ Name string }{
+			Name: "name_value",
+		},
+	}
 	descCfg := &struct {
 		Name  string `desc:"name description"`
 		Name2 string `description:"name2 description"`
@@ -346,6 +398,60 @@ func TestParseStruct(t *testing.T) {
 				},
 			},
 			expErr: nil,
+		},
+		{
+			name:     "Inherit hidden parent flag",
+			cfg:      hiddenNestedCfg,
+			optFuncs: []OptFunc{InheritHidden()},
+			expFlagSet: []*Flag{
+				{
+					Name:     "sub-name",
+					EnvNames: []string{"SUB_NAME"},
+					DefValue: "name_value",
+					Value:    newStringValue(&hiddenNestedCfg.Sub.Name),
+					Hidden:   true,
+				},
+				{
+					Name:     "sub-sub2-name",
+					EnvNames: []string{"SUB_SUB2_NAME"},
+					DefValue: "other_value",
+					Value:    newStringValue(&hiddenNestedCfg.Sub.Sub2.Name),
+					Hidden:   true,
+				},
+				{
+					Name:     "sub3-name",
+					EnvNames: []string{"SUB3_NAME"},
+					DefValue: "name_value",
+					Value:    newStringValue(&hiddenNestedCfg.Sub3.Name),
+				},
+			},
+		},
+		{
+			name:     "Inherit deprecated parent flag",
+			cfg:      deprecatedNestedCfg,
+			optFuncs: []OptFunc{InheritDeprecated()},
+			expFlagSet: []*Flag{
+				{
+					Name:       "sub-name",
+					EnvNames:   []string{"SUB_NAME"},
+					DefValue:   "name_value",
+					Value:      newStringValue(&deprecatedNestedCfg.Sub.Name),
+					Deprecated: true,
+				},
+				{
+					Name:       "sub-sub2-name",
+					EnvNames:   []string{"SUB_SUB2_NAME"},
+					DefValue:   "other_value",
+					Value:      newStringValue(&deprecatedNestedCfg.Sub.Sub2.Name),
+					Deprecated: true,
+				},
+				{
+					Name:     "sub3-name",
+					EnvNames: []string{"SUB3_NAME"},
+					DefValue: "name_value",
+					Value:    newStringValue(&deprecatedNestedCfg.Sub3.Name),
+				},
+			},
 		},
 		{
 			name:     "DescCfg with custom desc tag",
