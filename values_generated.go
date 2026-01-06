@@ -650,7 +650,7 @@ func newStringStringMapValue(m *map[string]string) *stringStringMapValue {
 }
 
 func (v *stringStringMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -704,7 +704,7 @@ func newIntStringMapValue(m *map[int]string) *intStringMapValue {
 }
 
 func (v *intStringMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -763,7 +763,7 @@ func newInt8StringMapValue(m *map[int8]string) *int8StringMapValue {
 }
 
 func (v *int8StringMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -822,7 +822,7 @@ func newInt16StringMapValue(m *map[int16]string) *int16StringMapValue {
 }
 
 func (v *int16StringMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -881,7 +881,7 @@ func newInt32StringMapValue(m *map[int32]string) *int32StringMapValue {
 }
 
 func (v *int32StringMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -940,7 +940,7 @@ func newInt64StringMapValue(m *map[int64]string) *int64StringMapValue {
 }
 
 func (v *int64StringMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -999,7 +999,7 @@ func newUintStringMapValue(m *map[uint]string) *uintStringMapValue {
 }
 
 func (v *uintStringMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -1058,7 +1058,7 @@ func newUint8StringMapValue(m *map[uint8]string) *uint8StringMapValue {
 }
 
 func (v *uint8StringMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -1117,7 +1117,7 @@ func newUint16StringMapValue(m *map[uint16]string) *uint16StringMapValue {
 }
 
 func (v *uint16StringMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -1176,7 +1176,7 @@ func newUint32StringMapValue(m *map[uint32]string) *uint32StringMapValue {
 }
 
 func (v *uint32StringMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -1235,7 +1235,7 @@ func newUint64StringMapValue(m *map[uint64]string) *uint64StringMapValue {
 }
 
 func (v *uint64StringMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -1393,7 +1393,7 @@ func newStringBoolMapValue(m *map[string]bool) *stringBoolMapValue {
 }
 
 func (v *stringBoolMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -1452,7 +1452,7 @@ func newIntBoolMapValue(m *map[int]bool) *intBoolMapValue {
 }
 
 func (v *intBoolMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -1516,7 +1516,7 @@ func newInt8BoolMapValue(m *map[int8]bool) *int8BoolMapValue {
 }
 
 func (v *int8BoolMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -1580,7 +1580,7 @@ func newInt16BoolMapValue(m *map[int16]bool) *int16BoolMapValue {
 }
 
 func (v *int16BoolMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -1644,7 +1644,7 @@ func newInt32BoolMapValue(m *map[int32]bool) *int32BoolMapValue {
 }
 
 func (v *int32BoolMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -1708,7 +1708,7 @@ func newInt64BoolMapValue(m *map[int64]bool) *int64BoolMapValue {
 }
 
 func (v *int64BoolMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -1772,7 +1772,7 @@ func newUintBoolMapValue(m *map[uint]bool) *uintBoolMapValue {
 }
 
 func (v *uintBoolMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -1836,7 +1836,7 @@ func newUint8BoolMapValue(m *map[uint8]bool) *uint8BoolMapValue {
 }
 
 func (v *uint8BoolMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -1900,7 +1900,7 @@ func newUint16BoolMapValue(m *map[uint16]bool) *uint16BoolMapValue {
 }
 
 func (v *uint16BoolMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -1964,7 +1964,7 @@ func newUint32BoolMapValue(m *map[uint32]bool) *uint32BoolMapValue {
 }
 
 func (v *uint32BoolMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -2028,7 +2028,7 @@ func newUint64BoolMapValue(m *map[uint64]bool) *uint64BoolMapValue {
 }
 
 func (v *uint64BoolMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -2191,7 +2191,7 @@ func newStringUintMapValue(m *map[string]uint) *stringUintMapValue {
 }
 
 func (v *stringUintMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -2250,7 +2250,7 @@ func newIntUintMapValue(m *map[int]uint) *intUintMapValue {
 }
 
 func (v *intUintMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -2314,7 +2314,7 @@ func newInt8UintMapValue(m *map[int8]uint) *int8UintMapValue {
 }
 
 func (v *int8UintMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -2378,7 +2378,7 @@ func newInt16UintMapValue(m *map[int16]uint) *int16UintMapValue {
 }
 
 func (v *int16UintMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -2442,7 +2442,7 @@ func newInt32UintMapValue(m *map[int32]uint) *int32UintMapValue {
 }
 
 func (v *int32UintMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -2506,7 +2506,7 @@ func newInt64UintMapValue(m *map[int64]uint) *int64UintMapValue {
 }
 
 func (v *int64UintMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -2570,7 +2570,7 @@ func newUintUintMapValue(m *map[uint]uint) *uintUintMapValue {
 }
 
 func (v *uintUintMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -2634,7 +2634,7 @@ func newUint8UintMapValue(m *map[uint8]uint) *uint8UintMapValue {
 }
 
 func (v *uint8UintMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -2698,7 +2698,7 @@ func newUint16UintMapValue(m *map[uint16]uint) *uint16UintMapValue {
 }
 
 func (v *uint16UintMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -2762,7 +2762,7 @@ func newUint32UintMapValue(m *map[uint32]uint) *uint32UintMapValue {
 }
 
 func (v *uint32UintMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -2826,7 +2826,7 @@ func newUint64UintMapValue(m *map[uint64]uint) *uint64UintMapValue {
 }
 
 func (v *uint64UintMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -2989,7 +2989,7 @@ func newStringUint8MapValue(m *map[string]uint8) *stringUint8MapValue {
 }
 
 func (v *stringUint8MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -3048,7 +3048,7 @@ func newIntUint8MapValue(m *map[int]uint8) *intUint8MapValue {
 }
 
 func (v *intUint8MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -3112,7 +3112,7 @@ func newInt8Uint8MapValue(m *map[int8]uint8) *int8Uint8MapValue {
 }
 
 func (v *int8Uint8MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -3176,7 +3176,7 @@ func newInt16Uint8MapValue(m *map[int16]uint8) *int16Uint8MapValue {
 }
 
 func (v *int16Uint8MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -3240,7 +3240,7 @@ func newInt32Uint8MapValue(m *map[int32]uint8) *int32Uint8MapValue {
 }
 
 func (v *int32Uint8MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -3304,7 +3304,7 @@ func newInt64Uint8MapValue(m *map[int64]uint8) *int64Uint8MapValue {
 }
 
 func (v *int64Uint8MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -3368,7 +3368,7 @@ func newUintUint8MapValue(m *map[uint]uint8) *uintUint8MapValue {
 }
 
 func (v *uintUint8MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -3432,7 +3432,7 @@ func newUint8Uint8MapValue(m *map[uint8]uint8) *uint8Uint8MapValue {
 }
 
 func (v *uint8Uint8MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -3496,7 +3496,7 @@ func newUint16Uint8MapValue(m *map[uint16]uint8) *uint16Uint8MapValue {
 }
 
 func (v *uint16Uint8MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -3560,7 +3560,7 @@ func newUint32Uint8MapValue(m *map[uint32]uint8) *uint32Uint8MapValue {
 }
 
 func (v *uint32Uint8MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -3624,7 +3624,7 @@ func newUint64Uint8MapValue(m *map[uint64]uint8) *uint64Uint8MapValue {
 }
 
 func (v *uint64Uint8MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -3787,7 +3787,7 @@ func newStringUint16MapValue(m *map[string]uint16) *stringUint16MapValue {
 }
 
 func (v *stringUint16MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -3846,7 +3846,7 @@ func newIntUint16MapValue(m *map[int]uint16) *intUint16MapValue {
 }
 
 func (v *intUint16MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -3910,7 +3910,7 @@ func newInt8Uint16MapValue(m *map[int8]uint16) *int8Uint16MapValue {
 }
 
 func (v *int8Uint16MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -3974,7 +3974,7 @@ func newInt16Uint16MapValue(m *map[int16]uint16) *int16Uint16MapValue {
 }
 
 func (v *int16Uint16MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -4038,7 +4038,7 @@ func newInt32Uint16MapValue(m *map[int32]uint16) *int32Uint16MapValue {
 }
 
 func (v *int32Uint16MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -4102,7 +4102,7 @@ func newInt64Uint16MapValue(m *map[int64]uint16) *int64Uint16MapValue {
 }
 
 func (v *int64Uint16MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -4166,7 +4166,7 @@ func newUintUint16MapValue(m *map[uint]uint16) *uintUint16MapValue {
 }
 
 func (v *uintUint16MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -4230,7 +4230,7 @@ func newUint8Uint16MapValue(m *map[uint8]uint16) *uint8Uint16MapValue {
 }
 
 func (v *uint8Uint16MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -4294,7 +4294,7 @@ func newUint16Uint16MapValue(m *map[uint16]uint16) *uint16Uint16MapValue {
 }
 
 func (v *uint16Uint16MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -4358,7 +4358,7 @@ func newUint32Uint16MapValue(m *map[uint32]uint16) *uint32Uint16MapValue {
 }
 
 func (v *uint32Uint16MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -4422,7 +4422,7 @@ func newUint64Uint16MapValue(m *map[uint64]uint16) *uint64Uint16MapValue {
 }
 
 func (v *uint64Uint16MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -4585,7 +4585,7 @@ func newStringUint32MapValue(m *map[string]uint32) *stringUint32MapValue {
 }
 
 func (v *stringUint32MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -4644,7 +4644,7 @@ func newIntUint32MapValue(m *map[int]uint32) *intUint32MapValue {
 }
 
 func (v *intUint32MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -4708,7 +4708,7 @@ func newInt8Uint32MapValue(m *map[int8]uint32) *int8Uint32MapValue {
 }
 
 func (v *int8Uint32MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -4772,7 +4772,7 @@ func newInt16Uint32MapValue(m *map[int16]uint32) *int16Uint32MapValue {
 }
 
 func (v *int16Uint32MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -4836,7 +4836,7 @@ func newInt32Uint32MapValue(m *map[int32]uint32) *int32Uint32MapValue {
 }
 
 func (v *int32Uint32MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -4900,7 +4900,7 @@ func newInt64Uint32MapValue(m *map[int64]uint32) *int64Uint32MapValue {
 }
 
 func (v *int64Uint32MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -4964,7 +4964,7 @@ func newUintUint32MapValue(m *map[uint]uint32) *uintUint32MapValue {
 }
 
 func (v *uintUint32MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -5028,7 +5028,7 @@ func newUint8Uint32MapValue(m *map[uint8]uint32) *uint8Uint32MapValue {
 }
 
 func (v *uint8Uint32MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -5092,7 +5092,7 @@ func newUint16Uint32MapValue(m *map[uint16]uint32) *uint16Uint32MapValue {
 }
 
 func (v *uint16Uint32MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -5156,7 +5156,7 @@ func newUint32Uint32MapValue(m *map[uint32]uint32) *uint32Uint32MapValue {
 }
 
 func (v *uint32Uint32MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -5220,7 +5220,7 @@ func newUint64Uint32MapValue(m *map[uint64]uint32) *uint64Uint32MapValue {
 }
 
 func (v *uint64Uint32MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -5383,7 +5383,7 @@ func newStringUint64MapValue(m *map[string]uint64) *stringUint64MapValue {
 }
 
 func (v *stringUint64MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -5442,7 +5442,7 @@ func newIntUint64MapValue(m *map[int]uint64) *intUint64MapValue {
 }
 
 func (v *intUint64MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -5506,7 +5506,7 @@ func newInt8Uint64MapValue(m *map[int8]uint64) *int8Uint64MapValue {
 }
 
 func (v *int8Uint64MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -5570,7 +5570,7 @@ func newInt16Uint64MapValue(m *map[int16]uint64) *int16Uint64MapValue {
 }
 
 func (v *int16Uint64MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -5634,7 +5634,7 @@ func newInt32Uint64MapValue(m *map[int32]uint64) *int32Uint64MapValue {
 }
 
 func (v *int32Uint64MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -5698,7 +5698,7 @@ func newInt64Uint64MapValue(m *map[int64]uint64) *int64Uint64MapValue {
 }
 
 func (v *int64Uint64MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -5762,7 +5762,7 @@ func newUintUint64MapValue(m *map[uint]uint64) *uintUint64MapValue {
 }
 
 func (v *uintUint64MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -5826,7 +5826,7 @@ func newUint8Uint64MapValue(m *map[uint8]uint64) *uint8Uint64MapValue {
 }
 
 func (v *uint8Uint64MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -5890,7 +5890,7 @@ func newUint16Uint64MapValue(m *map[uint16]uint64) *uint16Uint64MapValue {
 }
 
 func (v *uint16Uint64MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -5954,7 +5954,7 @@ func newUint32Uint64MapValue(m *map[uint32]uint64) *uint32Uint64MapValue {
 }
 
 func (v *uint32Uint64MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -6018,7 +6018,7 @@ func newUint64Uint64MapValue(m *map[uint64]uint64) *uint64Uint64MapValue {
 }
 
 func (v *uint64Uint64MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -6181,7 +6181,7 @@ func newStringIntMapValue(m *map[string]int) *stringIntMapValue {
 }
 
 func (v *stringIntMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -6240,7 +6240,7 @@ func newIntIntMapValue(m *map[int]int) *intIntMapValue {
 }
 
 func (v *intIntMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -6304,7 +6304,7 @@ func newInt8IntMapValue(m *map[int8]int) *int8IntMapValue {
 }
 
 func (v *int8IntMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -6368,7 +6368,7 @@ func newInt16IntMapValue(m *map[int16]int) *int16IntMapValue {
 }
 
 func (v *int16IntMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -6432,7 +6432,7 @@ func newInt32IntMapValue(m *map[int32]int) *int32IntMapValue {
 }
 
 func (v *int32IntMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -6496,7 +6496,7 @@ func newInt64IntMapValue(m *map[int64]int) *int64IntMapValue {
 }
 
 func (v *int64IntMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -6560,7 +6560,7 @@ func newUintIntMapValue(m *map[uint]int) *uintIntMapValue {
 }
 
 func (v *uintIntMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -6624,7 +6624,7 @@ func newUint8IntMapValue(m *map[uint8]int) *uint8IntMapValue {
 }
 
 func (v *uint8IntMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -6688,7 +6688,7 @@ func newUint16IntMapValue(m *map[uint16]int) *uint16IntMapValue {
 }
 
 func (v *uint16IntMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -6752,7 +6752,7 @@ func newUint32IntMapValue(m *map[uint32]int) *uint32IntMapValue {
 }
 
 func (v *uint32IntMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -6816,7 +6816,7 @@ func newUint64IntMapValue(m *map[uint64]int) *uint64IntMapValue {
 }
 
 func (v *uint64IntMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -6979,7 +6979,7 @@ func newStringInt8MapValue(m *map[string]int8) *stringInt8MapValue {
 }
 
 func (v *stringInt8MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -7038,7 +7038,7 @@ func newIntInt8MapValue(m *map[int]int8) *intInt8MapValue {
 }
 
 func (v *intInt8MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -7102,7 +7102,7 @@ func newInt8Int8MapValue(m *map[int8]int8) *int8Int8MapValue {
 }
 
 func (v *int8Int8MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -7166,7 +7166,7 @@ func newInt16Int8MapValue(m *map[int16]int8) *int16Int8MapValue {
 }
 
 func (v *int16Int8MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -7230,7 +7230,7 @@ func newInt32Int8MapValue(m *map[int32]int8) *int32Int8MapValue {
 }
 
 func (v *int32Int8MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -7294,7 +7294,7 @@ func newInt64Int8MapValue(m *map[int64]int8) *int64Int8MapValue {
 }
 
 func (v *int64Int8MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -7358,7 +7358,7 @@ func newUintInt8MapValue(m *map[uint]int8) *uintInt8MapValue {
 }
 
 func (v *uintInt8MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -7422,7 +7422,7 @@ func newUint8Int8MapValue(m *map[uint8]int8) *uint8Int8MapValue {
 }
 
 func (v *uint8Int8MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -7486,7 +7486,7 @@ func newUint16Int8MapValue(m *map[uint16]int8) *uint16Int8MapValue {
 }
 
 func (v *uint16Int8MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -7550,7 +7550,7 @@ func newUint32Int8MapValue(m *map[uint32]int8) *uint32Int8MapValue {
 }
 
 func (v *uint32Int8MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -7614,7 +7614,7 @@ func newUint64Int8MapValue(m *map[uint64]int8) *uint64Int8MapValue {
 }
 
 func (v *uint64Int8MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -7777,7 +7777,7 @@ func newStringInt16MapValue(m *map[string]int16) *stringInt16MapValue {
 }
 
 func (v *stringInt16MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -7836,7 +7836,7 @@ func newIntInt16MapValue(m *map[int]int16) *intInt16MapValue {
 }
 
 func (v *intInt16MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -7900,7 +7900,7 @@ func newInt8Int16MapValue(m *map[int8]int16) *int8Int16MapValue {
 }
 
 func (v *int8Int16MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -7964,7 +7964,7 @@ func newInt16Int16MapValue(m *map[int16]int16) *int16Int16MapValue {
 }
 
 func (v *int16Int16MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -8028,7 +8028,7 @@ func newInt32Int16MapValue(m *map[int32]int16) *int32Int16MapValue {
 }
 
 func (v *int32Int16MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -8092,7 +8092,7 @@ func newInt64Int16MapValue(m *map[int64]int16) *int64Int16MapValue {
 }
 
 func (v *int64Int16MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -8156,7 +8156,7 @@ func newUintInt16MapValue(m *map[uint]int16) *uintInt16MapValue {
 }
 
 func (v *uintInt16MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -8220,7 +8220,7 @@ func newUint8Int16MapValue(m *map[uint8]int16) *uint8Int16MapValue {
 }
 
 func (v *uint8Int16MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -8284,7 +8284,7 @@ func newUint16Int16MapValue(m *map[uint16]int16) *uint16Int16MapValue {
 }
 
 func (v *uint16Int16MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -8348,7 +8348,7 @@ func newUint32Int16MapValue(m *map[uint32]int16) *uint32Int16MapValue {
 }
 
 func (v *uint32Int16MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -8412,7 +8412,7 @@ func newUint64Int16MapValue(m *map[uint64]int16) *uint64Int16MapValue {
 }
 
 func (v *uint64Int16MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -8575,7 +8575,7 @@ func newStringInt32MapValue(m *map[string]int32) *stringInt32MapValue {
 }
 
 func (v *stringInt32MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -8634,7 +8634,7 @@ func newIntInt32MapValue(m *map[int]int32) *intInt32MapValue {
 }
 
 func (v *intInt32MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -8698,7 +8698,7 @@ func newInt8Int32MapValue(m *map[int8]int32) *int8Int32MapValue {
 }
 
 func (v *int8Int32MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -8762,7 +8762,7 @@ func newInt16Int32MapValue(m *map[int16]int32) *int16Int32MapValue {
 }
 
 func (v *int16Int32MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -8826,7 +8826,7 @@ func newInt32Int32MapValue(m *map[int32]int32) *int32Int32MapValue {
 }
 
 func (v *int32Int32MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -8890,7 +8890,7 @@ func newInt64Int32MapValue(m *map[int64]int32) *int64Int32MapValue {
 }
 
 func (v *int64Int32MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -8954,7 +8954,7 @@ func newUintInt32MapValue(m *map[uint]int32) *uintInt32MapValue {
 }
 
 func (v *uintInt32MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -9018,7 +9018,7 @@ func newUint8Int32MapValue(m *map[uint8]int32) *uint8Int32MapValue {
 }
 
 func (v *uint8Int32MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -9082,7 +9082,7 @@ func newUint16Int32MapValue(m *map[uint16]int32) *uint16Int32MapValue {
 }
 
 func (v *uint16Int32MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -9146,7 +9146,7 @@ func newUint32Int32MapValue(m *map[uint32]int32) *uint32Int32MapValue {
 }
 
 func (v *uint32Int32MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -9210,7 +9210,7 @@ func newUint64Int32MapValue(m *map[uint64]int32) *uint64Int32MapValue {
 }
 
 func (v *uint64Int32MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -9373,7 +9373,7 @@ func newStringInt64MapValue(m *map[string]int64) *stringInt64MapValue {
 }
 
 func (v *stringInt64MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -9432,7 +9432,7 @@ func newIntInt64MapValue(m *map[int]int64) *intInt64MapValue {
 }
 
 func (v *intInt64MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -9496,7 +9496,7 @@ func newInt8Int64MapValue(m *map[int8]int64) *int8Int64MapValue {
 }
 
 func (v *int8Int64MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -9560,7 +9560,7 @@ func newInt16Int64MapValue(m *map[int16]int64) *int16Int64MapValue {
 }
 
 func (v *int16Int64MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -9624,7 +9624,7 @@ func newInt32Int64MapValue(m *map[int32]int64) *int32Int64MapValue {
 }
 
 func (v *int32Int64MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -9688,7 +9688,7 @@ func newInt64Int64MapValue(m *map[int64]int64) *int64Int64MapValue {
 }
 
 func (v *int64Int64MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -9752,7 +9752,7 @@ func newUintInt64MapValue(m *map[uint]int64) *uintInt64MapValue {
 }
 
 func (v *uintInt64MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -9816,7 +9816,7 @@ func newUint8Int64MapValue(m *map[uint8]int64) *uint8Int64MapValue {
 }
 
 func (v *uint8Int64MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -9880,7 +9880,7 @@ func newUint16Int64MapValue(m *map[uint16]int64) *uint16Int64MapValue {
 }
 
 func (v *uint16Int64MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -9944,7 +9944,7 @@ func newUint32Int64MapValue(m *map[uint32]int64) *uint32Int64MapValue {
 }
 
 func (v *uint32Int64MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -10008,7 +10008,7 @@ func newUint64Int64MapValue(m *map[uint64]int64) *uint64Int64MapValue {
 }
 
 func (v *uint64Int64MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -10171,7 +10171,7 @@ func newStringFloat64MapValue(m *map[string]float64) *stringFloat64MapValue {
 }
 
 func (v *stringFloat64MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -10230,7 +10230,7 @@ func newIntFloat64MapValue(m *map[int]float64) *intFloat64MapValue {
 }
 
 func (v *intFloat64MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -10294,7 +10294,7 @@ func newInt8Float64MapValue(m *map[int8]float64) *int8Float64MapValue {
 }
 
 func (v *int8Float64MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -10358,7 +10358,7 @@ func newInt16Float64MapValue(m *map[int16]float64) *int16Float64MapValue {
 }
 
 func (v *int16Float64MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -10422,7 +10422,7 @@ func newInt32Float64MapValue(m *map[int32]float64) *int32Float64MapValue {
 }
 
 func (v *int32Float64MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -10486,7 +10486,7 @@ func newInt64Float64MapValue(m *map[int64]float64) *int64Float64MapValue {
 }
 
 func (v *int64Float64MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -10550,7 +10550,7 @@ func newUintFloat64MapValue(m *map[uint]float64) *uintFloat64MapValue {
 }
 
 func (v *uintFloat64MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -10614,7 +10614,7 @@ func newUint8Float64MapValue(m *map[uint8]float64) *uint8Float64MapValue {
 }
 
 func (v *uint8Float64MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -10678,7 +10678,7 @@ func newUint16Float64MapValue(m *map[uint16]float64) *uint16Float64MapValue {
 }
 
 func (v *uint16Float64MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -10742,7 +10742,7 @@ func newUint32Float64MapValue(m *map[uint32]float64) *uint32Float64MapValue {
 }
 
 func (v *uint32Float64MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -10806,7 +10806,7 @@ func newUint64Float64MapValue(m *map[uint64]float64) *uint64Float64MapValue {
 }
 
 func (v *uint64Float64MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -10969,7 +10969,7 @@ func newStringFloat32MapValue(m *map[string]float32) *stringFloat32MapValue {
 }
 
 func (v *stringFloat32MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -11028,7 +11028,7 @@ func newIntFloat32MapValue(m *map[int]float32) *intFloat32MapValue {
 }
 
 func (v *intFloat32MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -11092,7 +11092,7 @@ func newInt8Float32MapValue(m *map[int8]float32) *int8Float32MapValue {
 }
 
 func (v *int8Float32MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -11156,7 +11156,7 @@ func newInt16Float32MapValue(m *map[int16]float32) *int16Float32MapValue {
 }
 
 func (v *int16Float32MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -11220,7 +11220,7 @@ func newInt32Float32MapValue(m *map[int32]float32) *int32Float32MapValue {
 }
 
 func (v *int32Float32MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -11284,7 +11284,7 @@ func newInt64Float32MapValue(m *map[int64]float32) *int64Float32MapValue {
 }
 
 func (v *int64Float32MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -11348,7 +11348,7 @@ func newUintFloat32MapValue(m *map[uint]float32) *uintFloat32MapValue {
 }
 
 func (v *uintFloat32MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -11412,7 +11412,7 @@ func newUint8Float32MapValue(m *map[uint8]float32) *uint8Float32MapValue {
 }
 
 func (v *uint8Float32MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -11476,7 +11476,7 @@ func newUint16Float32MapValue(m *map[uint16]float32) *uint16Float32MapValue {
 }
 
 func (v *uint16Float32MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -11540,7 +11540,7 @@ func newUint32Float32MapValue(m *map[uint32]float32) *uint32Float32MapValue {
 }
 
 func (v *uint32Float32MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -11604,7 +11604,7 @@ func newUint64Float32MapValue(m *map[uint64]float32) *uint64Float32MapValue {
 }
 
 func (v *uint64Float32MapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -11767,7 +11767,7 @@ func newStringDurationMapValue(m *map[string]time.Duration) *stringDurationMapVa
 }
 
 func (v *stringDurationMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -11826,7 +11826,7 @@ func newIntDurationMapValue(m *map[int]time.Duration) *intDurationMapValue {
 }
 
 func (v *intDurationMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -11890,7 +11890,7 @@ func newInt8DurationMapValue(m *map[int8]time.Duration) *int8DurationMapValue {
 }
 
 func (v *int8DurationMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -11954,7 +11954,7 @@ func newInt16DurationMapValue(m *map[int16]time.Duration) *int16DurationMapValue
 }
 
 func (v *int16DurationMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -12018,7 +12018,7 @@ func newInt32DurationMapValue(m *map[int32]time.Duration) *int32DurationMapValue
 }
 
 func (v *int32DurationMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -12082,7 +12082,7 @@ func newInt64DurationMapValue(m *map[int64]time.Duration) *int64DurationMapValue
 }
 
 func (v *int64DurationMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -12146,7 +12146,7 @@ func newUintDurationMapValue(m *map[uint]time.Duration) *uintDurationMapValue {
 }
 
 func (v *uintDurationMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -12210,7 +12210,7 @@ func newUint8DurationMapValue(m *map[uint8]time.Duration) *uint8DurationMapValue
 }
 
 func (v *uint8DurationMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -12274,7 +12274,7 @@ func newUint16DurationMapValue(m *map[uint16]time.Duration) *uint16DurationMapVa
 }
 
 func (v *uint16DurationMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -12338,7 +12338,7 @@ func newUint32DurationMapValue(m *map[uint32]time.Duration) *uint32DurationMapVa
 }
 
 func (v *uint32DurationMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -12402,7 +12402,7 @@ func newUint64DurationMapValue(m *map[uint64]time.Duration) *uint64DurationMapVa
 }
 
 func (v *uint64DurationMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -12565,7 +12565,7 @@ func newStringIPMapValue(m *map[string]net.IP) *stringIPMapValue {
 }
 
 func (v *stringIPMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -12624,7 +12624,7 @@ func newIntIPMapValue(m *map[int]net.IP) *intIPMapValue {
 }
 
 func (v *intIPMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -12688,7 +12688,7 @@ func newInt8IPMapValue(m *map[int8]net.IP) *int8IPMapValue {
 }
 
 func (v *int8IPMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -12752,7 +12752,7 @@ func newInt16IPMapValue(m *map[int16]net.IP) *int16IPMapValue {
 }
 
 func (v *int16IPMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -12816,7 +12816,7 @@ func newInt32IPMapValue(m *map[int32]net.IP) *int32IPMapValue {
 }
 
 func (v *int32IPMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -12880,7 +12880,7 @@ func newInt64IPMapValue(m *map[int64]net.IP) *int64IPMapValue {
 }
 
 func (v *int64IPMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -12944,7 +12944,7 @@ func newUintIPMapValue(m *map[uint]net.IP) *uintIPMapValue {
 }
 
 func (v *uintIPMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -13008,7 +13008,7 @@ func newUint8IPMapValue(m *map[uint8]net.IP) *uint8IPMapValue {
 }
 
 func (v *uint8IPMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -13072,7 +13072,7 @@ func newUint16IPMapValue(m *map[uint16]net.IP) *uint16IPMapValue {
 }
 
 func (v *uint16IPMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -13136,7 +13136,7 @@ func newUint32IPMapValue(m *map[uint32]net.IP) *uint32IPMapValue {
 }
 
 func (v *uint32IPMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -13200,7 +13200,7 @@ func newUint64IPMapValue(m *map[uint64]net.IP) *uint64IPMapValue {
 }
 
 func (v *uint64IPMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -13363,7 +13363,7 @@ func newStringHexBytesMapValue(m *map[string]HexBytes) *stringHexBytesMapValue {
 }
 
 func (v *stringHexBytesMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -13422,7 +13422,7 @@ func newIntHexBytesMapValue(m *map[int]HexBytes) *intHexBytesMapValue {
 }
 
 func (v *intHexBytesMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -13486,7 +13486,7 @@ func newInt8HexBytesMapValue(m *map[int8]HexBytes) *int8HexBytesMapValue {
 }
 
 func (v *int8HexBytesMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -13550,7 +13550,7 @@ func newInt16HexBytesMapValue(m *map[int16]HexBytes) *int16HexBytesMapValue {
 }
 
 func (v *int16HexBytesMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -13614,7 +13614,7 @@ func newInt32HexBytesMapValue(m *map[int32]HexBytes) *int32HexBytesMapValue {
 }
 
 func (v *int32HexBytesMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -13678,7 +13678,7 @@ func newInt64HexBytesMapValue(m *map[int64]HexBytes) *int64HexBytesMapValue {
 }
 
 func (v *int64HexBytesMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -13742,7 +13742,7 @@ func newUintHexBytesMapValue(m *map[uint]HexBytes) *uintHexBytesMapValue {
 }
 
 func (v *uintHexBytesMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -13806,7 +13806,7 @@ func newUint8HexBytesMapValue(m *map[uint8]HexBytes) *uint8HexBytesMapValue {
 }
 
 func (v *uint8HexBytesMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -13870,7 +13870,7 @@ func newUint16HexBytesMapValue(m *map[uint16]HexBytes) *uint16HexBytesMapValue {
 }
 
 func (v *uint16HexBytesMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -13934,7 +13934,7 @@ func newUint32HexBytesMapValue(m *map[uint32]HexBytes) *uint32HexBytesMapValue {
 }
 
 func (v *uint32HexBytesMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -13998,7 +13998,7 @@ func newUint64HexBytesMapValue(m *map[uint64]HexBytes) *uint64HexBytesMapValue {
 }
 
 func (v *uint64HexBytesMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -14161,7 +14161,7 @@ func newStringRegexpMapValue(m *map[string]*regexp.Regexp) *stringRegexpMapValue
 }
 
 func (v *stringRegexpMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -14220,7 +14220,7 @@ func newIntRegexpMapValue(m *map[int]*regexp.Regexp) *intRegexpMapValue {
 }
 
 func (v *intRegexpMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -14284,7 +14284,7 @@ func newInt8RegexpMapValue(m *map[int8]*regexp.Regexp) *int8RegexpMapValue {
 }
 
 func (v *int8RegexpMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -14348,7 +14348,7 @@ func newInt16RegexpMapValue(m *map[int16]*regexp.Regexp) *int16RegexpMapValue {
 }
 
 func (v *int16RegexpMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -14412,7 +14412,7 @@ func newInt32RegexpMapValue(m *map[int32]*regexp.Regexp) *int32RegexpMapValue {
 }
 
 func (v *int32RegexpMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -14476,7 +14476,7 @@ func newInt64RegexpMapValue(m *map[int64]*regexp.Regexp) *int64RegexpMapValue {
 }
 
 func (v *int64RegexpMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -14540,7 +14540,7 @@ func newUintRegexpMapValue(m *map[uint]*regexp.Regexp) *uintRegexpMapValue {
 }
 
 func (v *uintRegexpMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -14604,7 +14604,7 @@ func newUint8RegexpMapValue(m *map[uint8]*regexp.Regexp) *uint8RegexpMapValue {
 }
 
 func (v *uint8RegexpMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -14668,7 +14668,7 @@ func newUint16RegexpMapValue(m *map[uint16]*regexp.Regexp) *uint16RegexpMapValue
 }
 
 func (v *uint16RegexpMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -14732,7 +14732,7 @@ func newUint32RegexpMapValue(m *map[uint32]*regexp.Regexp) *uint32RegexpMapValue
 }
 
 func (v *uint32RegexpMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -14796,7 +14796,7 @@ func newUint64RegexpMapValue(m *map[uint64]*regexp.Regexp) *uint64RegexpMapValue
 }
 
 func (v *uint64RegexpMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -15058,7 +15058,7 @@ func newStringIPNetMapValue(m *map[string]net.IPNet) *stringIPNetMapValue {
 }
 
 func (v *stringIPNetMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -15117,7 +15117,7 @@ func newIntIPNetMapValue(m *map[int]net.IPNet) *intIPNetMapValue {
 }
 
 func (v *intIPNetMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -15181,7 +15181,7 @@ func newInt8IPNetMapValue(m *map[int8]net.IPNet) *int8IPNetMapValue {
 }
 
 func (v *int8IPNetMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -15245,7 +15245,7 @@ func newInt16IPNetMapValue(m *map[int16]net.IPNet) *int16IPNetMapValue {
 }
 
 func (v *int16IPNetMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -15309,7 +15309,7 @@ func newInt32IPNetMapValue(m *map[int32]net.IPNet) *int32IPNetMapValue {
 }
 
 func (v *int32IPNetMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -15373,7 +15373,7 @@ func newInt64IPNetMapValue(m *map[int64]net.IPNet) *int64IPNetMapValue {
 }
 
 func (v *int64IPNetMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -15437,7 +15437,7 @@ func newUintIPNetMapValue(m *map[uint]net.IPNet) *uintIPNetMapValue {
 }
 
 func (v *uintIPNetMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -15501,7 +15501,7 @@ func newUint8IPNetMapValue(m *map[uint8]net.IPNet) *uint8IPNetMapValue {
 }
 
 func (v *uint8IPNetMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -15565,7 +15565,7 @@ func newUint16IPNetMapValue(m *map[uint16]net.IPNet) *uint16IPNetMapValue {
 }
 
 func (v *uint16IPNetMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -15629,7 +15629,7 @@ func newUint32IPNetMapValue(m *map[uint32]net.IPNet) *uint32IPNetMapValue {
 }
 
 func (v *uint32IPNetMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}
@@ -15693,7 +15693,7 @@ func newUint64IPNetMapValue(m *map[uint64]net.IPNet) *uint64IPNetMapValue {
 }
 
 func (v *uint64IPNetMapValue) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
 	if len(ss) < 2 {
 		return errors.New("invalid map flag syntax, use -map=key1:val1")
 	}

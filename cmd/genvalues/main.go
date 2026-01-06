@@ -219,7 +219,7 @@ func new{{MapValueName $value . | Title}}(m *map[{{.}}]{{$value.Type}}) *{{MapVa
 }
 
 func (v *{{MapValueName $value .}}) Set(s string) error {
-	ss := strings.Split(s, ":")
+	ss := strings.SplitN(s, ":", 2)
     if len(ss) < 2 {
         return errors.New("invalid map flag syntax, use -map=key1:val1")
     }
@@ -437,6 +437,19 @@ func Test{{MapValueName $value $keyType | Title}}(t *testing.T) {
 		{{else}}\nn
 		assert.NotEmpty(t, v.String())
 		{{end}}\nn
+	})
+	{{end}}{{if and (eq $keyType "string") (eq $value.Type "string") }}\nn
+	// Test case for colon handling in StringStringMap
+	t.Run("value_with_colons", func(t *testing.T) {
+		var err error
+		a := make(map[{{$keyType}}]{{$value.Type}})
+		v := new{{MapValueName $value $keyType | Title}}(&a)
+		// Test a string (e.g. URL) which contains colons
+		err = v.Set("testurl:https://google.com")
+		assert.Nil(t, err)
+		// Assert that the value was not truncated
+		res := v.Get().(map[string]string)
+		assert.Equal(t, "https://google.com", res["testurl"])
 	})
 	{{end}}\nn
 }

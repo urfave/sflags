@@ -193,6 +193,18 @@ func TestStringStringMapValue(t *testing.T) {
 		assert.Equal(t, "map[string]string", v.Type())
 		assert.NotEmpty(t, v.String())
 	})
+	// Test case for colon handling in StringStringMap
+	t.Run("value_with_colons", func(t *testing.T) {
+		var err error
+		a := make(map[string]string)
+		v := newStringStringMapValue(&a)
+		// Test a string (e.g. URL) which contains colons
+		err = v.Set("testurl:https://google.com")
+		assert.Nil(t, err)
+		// Assert that the value was not truncated
+		res := v.Get().(map[string]string)
+		assert.Equal(t, "https://google.com", res["testurl"])
+	})
 }
 
 func TestIntStringMapValue(t *testing.T) {
